@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireScope - Settings & Personalization</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Outfit:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 30px rgba(147, 125, 255, 0.15);
+            border-color: rgba(147, 125, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        body {
+            background-color: #080716;
+            color: #e3dffe;
+            overflow-x: hidden;
+        }
+        .neon-line {
+            height: 4px;
+            background: linear-gradient(90deg, #cabeff, #4cd6ff);
+            box-shadow: 0 0 10px rgba(179, 136, 255, 0.5);
+            border-radius: 2px;
+        }
+        /* Custom Toggle Styling */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #33324a;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #937dff; }
+        input:checked + .slider:before { transform: translateX(20px); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f28",
+                        "primary-container": "#937dff",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "outline-variant": "#484555",
+                        "on-tertiary-fixed": "#3f001c",
+                        "secondary": "#a6e6ff",
+                        "surface-tint": "#cabeff",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "primary-fixed": "#e6deff",
+                        "surface-deep": "#080716",
+                        "on-tertiary-container": "#59002a",
+                        "on-secondary": "#003543",
+                        "secondary-container": "#14d1ff",
+                        "surface-dim": "#121127",
+                        "background": "#121127",
+                        "tertiary-fixed-dim": "#ffb1c6",
+                        "on-primary-fixed-variant": "#4717ca",
+                        "secondary-fixed": "#b7eaff",
+                        "surface-glass": "rgba(255, 255, 255, 0.05)",
+                        "on-primary": "#31009a",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#2f2e46",
+                        "tertiary": "#ffb1c6",
+                        "primary-fixed-dim": "#cabeff",
+                        "surface-container": "#1e1d34",
+                        "on-background": "#e3dffe",
+                        "inverse-surface": "#e3dffe",
+                        "error": "#ffb4ab",
+                        "neon-glow": "#B388FF",
+                        "outline": "#938ea1",
+                        "surface-container-high": "#29283f",
+                        "on-error": "#690005",
+                        "surface-bright": "#38374f",
+                        "on-primary-fixed": "#1c0062",
+                        "inverse-primary": "#603de2",
+                        "surface-container-highest": "#33324a",
+                        "surface-container-low": "#1a1930",
+                        "on-surface-variant": "#c9c4d8",
+                        "on-primary-container": "#2a0088",
+                        "on-secondary-container": "#00566b",
+                        "tertiary-container": "#f65592",
+                        "surface-variant": "#33324a",
+                        "on-surface": "#e3dffe",
+                        "on-tertiary": "#650031",
+                        "primary": "#cabeff",
+                        "tertiary-fixed": "#ffd9e1",
+                        "surface-container-lowest": "#0c0b21",
+                        "on-tertiary-fixed-variant": "#8e0048",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#121127"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "card-padding": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Lexend"],
+                        "display-lg": ["Outfit"],
+                        "body-sm": ["Lexend"],
+                        "headline-md": ["Outfit"],
+                        "label-sm": ["Lexend"],
+                        "label-md": ["Lexend"],
+                        "headline-lg": ["Outfit"],
+                        "display-lg-mobile": ["Outfit"],
+                        "body-md": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen">
+<!-- Header Navigation Shell -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl fixed top-0 left-0 right-0 z-40">
+<div class="flex justify-between items-center w-full px-container-margin py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a young creative designer with sharp features, wearing a modern black turtleneck. The lighting is moody and cinematic with soft purple rim light against a dark, out-of-focus studio background. The overall aesthetic is high-end, premium, and sophisticated, matching the Lumina Talent brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJW6DzRq9lA7klz1QkMEmnSK79m-aikTafHxhsDWSqV5eLLbU-ZNlcNnd3LG8_L1vhfr1ptrlvewO8ncXCC6tfOo_6bMFBLenF0u9d5IKfmeMWuU0_JPr_y9WQ-Gc3Y7Q1pSMYYFvnQwULkKYYlkXQ17MSF62acizIV6hPkQNtcuTe7Rxdt1Qr8kRlFdZUz589K92JU5mD3zdsx1xQE6s2HRQbl8X36YxZ6oFFo8m274askLKBmxS_ri8MIH3KUbYze0x5W74aY5U"/>
+</div>
+<h1 class="font-display-lg text-primary tracking-tight text-2xl">HireScope</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-white/10 rounded-full transition-all">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="hidden md:flex gap-6 items-center">
+<span class="text-on-surface-variant font-label-md text-label-md hover:text-primary cursor-pointer transition-colors">Jobs</span>
+<span class="text-on-surface-variant font-label-md text-label-md hover:text-primary cursor-pointer transition-colors">Messages</span>
+<span class="text-primary font-bold font-label-md text-label-md cursor-pointer">Settings</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-5xl mx-auto space-y-8">
+<!-- Hero Header -->
+<div class="relative overflow-hidden rounded-lg p-8 mb-4">
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg mb-2">Settings & Identity</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Customize your Lumina experience. Manage your stealth presence, optimize performance, and fine-tune your visual environment.</p>
+</div>
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-30 pointer-events-none">
+<!-- Decorative element -->
+<div class="absolute inset-0 bg-gradient-to-l from-primary/40 to-transparent blur-3xl"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Section: Personalization (Bento Large) -->
+<section class="md:col-span-8 glass-card rounded-lg p-card-padding glow-hover transition-all duration-300">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">palette</span>
+<h3 class="font-headline-md text-headline-md">Personalization</h3>
+</div>
+<div class="space-y-8">
+<!-- Theme Selector -->
+<div>
+<div class="flex justify-between items-end mb-4">
+<div>
+<label class="font-label-md text-label-md text-primary block mb-1">Visual Theme</label>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Choose your atmospheric mode</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<button class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-container-highest border-2 border-primary shadow-[0_0_15px_rgba(147,125,255,0.3)]">
+<div class="w-full h-12 rounded bg-surface-deep border border-white/10 mb-1"></div>
+<span class="font-label-sm text-label-sm">Midnight Glow</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-container border border-white/5 hover:bg-surface-bright transition-colors">
+<div class="w-full h-12 rounded bg-slate-900 border border-white/10 mb-1"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Deep Space</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-container border border-white/5 hover:bg-surface-bright transition-colors">
+<div class="w-full h-12 rounded bg-white border border-black/10 mb-1"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Crystal Light</span>
+</button>
+</div>
+</div>
+<!-- Brand Highlights -->
+<div>
+<label class="font-label-md text-label-md text-primary block mb-3">Brand Highlights</label>
+<div class="flex flex-wrap gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container cursor-pointer border-4 border-white/20"></div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed-dim cursor-pointer border-2 border-transparent"></div>
+<div class="w-10 h-10 rounded-full bg-tertiary-container cursor-pointer border-2 border-transparent"></div>
+<div class="w-10 h-10 rounded-full bg-emerald-400 cursor-pointer border-2 border-transparent"></div>
+<div class="w-10 h-10 rounded-full bg-amber-400 cursor-pointer border-2 border-transparent"></div>
+</div>
+</div>
+<div class="neon-line w-full"></div>
+</div>
+</section>
+<!-- Section: Native Tools (Bento Small) -->
+<section class="md:col-span-4 glass-card rounded-lg p-card-padding glow-hover transition-all duration-300">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary">extension</span>
+<h3 class="font-headline-md text-headline-md">Native Tools</h3>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-white/5">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Battery Saver</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Reduce blur effects</span>
+</div>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-white/5">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Job Fetcher</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Background scan active</span>
+</div>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="p-4 rounded-lg bg-primary/10 border border-primary/20 mt-4">
+<div class="flex items-center gap-2 text-primary mb-2">
+<span class="material-symbols-outlined text-sm">info</span>
+<span class="font-label-sm text-label-sm">PRO TIP</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Background scanning uses only 2% daily battery.</p>
+</div>
+</div>
+</section>
+<!-- Section: Privacy (Bento Wide) -->
+<section class="md:col-span-12 glass-card rounded-lg p-card-padding glow-hover transition-all duration-300">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-error">security</span>
+<h3 class="font-headline-md text-headline-md">Privacy & Visibility</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md text-label-md">Public Profile</h4>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Allow recruiters to discover your profile through global search results.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined">incognito</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md text-label-md">Stealth Mode</h4>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hide your current employer from seeing your active job search status.</p>
+</div>
+</div>
+</div>
+<div class="rounded-lg bg-surface-container-highest/30 p-6 flex flex-col justify-center border border-white/5">
+<h4 class="font-label-md text-label-md mb-2">Privacy Health</h4>
+<div class="w-full bg-surface-container rounded-full h-3 mb-3 overflow-hidden">
+<div class="bg-gradient-to-r from-primary to-secondary-fixed-dim h-full w-[85%] shadow-[0_0_10px_rgba(147,125,255,0.5)]"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Secure Configuration</span>
+<span class="text-secondary-fixed-dim">Excellent (85%)</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Logout Action Area -->
+<div class="flex justify-center pt-8">
+<button class="px-12 py-4 rounded-full glass-card hover:bg-error-container/20 hover:border-error/40 transition-all font-label-md text-label-md text-on-surface-variant hover:text-error flex items-center gap-2">
+<span class="material-symbols-outlined text-md">logout</span>
+                Logout from HireScope
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Mobile Only) -->
+<nav class="md:hidden fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-6 py-3 mx-auto bg-surface-container/60 backdrop-blur-2xl border border-white/10 w-[90%] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+<button class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:text-primary transition-all">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="flex items-center justify-center text-on-surface-variant w-12 h-12 hover:text-primary transition-all">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="flex items-center justify-center bg-primary-container text-on-primary-container rounded-full w-12 h-12 shadow-[0_0_15px_rgba(147,125,255,0.3)] scale-90 duration-150">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions for glass hover
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

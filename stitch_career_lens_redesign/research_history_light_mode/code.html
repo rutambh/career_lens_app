@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireScope - Research History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c0c1ff",
+                    "secondary": "#565e74",
+                    "on-surface": "#0b1c30",
+                    "on-background": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "tertiary-fixed": "#ffd9e4",
+                    "primary-fixed": "#e1e0ff",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-container": "#dae2fd",
+                    "primary": "#4648d4",
+                    "outline-variant": "#c7c4d7",
+                    "secondary-fixed": "#dae2fd",
+                    "on-primary-fixed": "#07006c",
+                    "surface-dim": "#cbdbf5",
+                    "surface-tint": "#494bd6",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#3e0022",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9ff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-surface-variant": "#464554",
+                    "inverse-surface": "#213145",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed": "#131b2e",
+                    "surface-container-highest": "#d3e4fe",
+                    "primary-container": "#6063ee",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#d23284",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-container": "#5c647a",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#fffbff",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary": "#b10e6b",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "on-tertiary-fixed-variant": "#8c0053",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-variant": "#d3e4fe",
+                    "outline": "#767586",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "tertiary-fixed-dim": "#ffb0cd",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "48px",
+                    "sm": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "md": "24px",
+                    "xl": "80px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Outfit"],
+                    "headline-lg": ["Outfit"],
+                    "body-md": ["Outfit"],
+                    "label-md": ["Outfit"],
+                    "display-lg-mobile": ["Outfit"],
+                    "display-lg": ["Outfit"],
+                    "body-lg": ["Outfit"],
+                    "headline-md": ["Outfit"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Outfit', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .circular-progress {
+            background: conic-gradient(var(--progress-color) calc(var(--progress-val) * 1%), #e5eeff 0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .circular-progress::before {
+            content: "";
+            position: absolute;
+            height: 80%;
+            width: 80%;
+            background-color: white;
+            border-radius: 50%;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface pb-24">
+<!-- TopAppBar -->
+<nav class="bg-surface sticky top-0 z-50 w-full shadow-sm">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">history</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">History</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined text-secondary">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors transition-all duration-200 ease-in-out">
+<span class="material-symbols-outlined text-secondary">more_vert</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-8 space-y-lg">
+<!-- Active Searches Section -->
+<section>
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Searches</h2>
+<p class="font-body-md text-on-surface-variant">Ongoing talent acquisition streams</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Progress Card 1 -->
+<div class="bg-surface-container-lowest p-md rounded-lg shadow-sm border border-surface-container flex items-center gap-md hover:shadow-md transition-shadow">
+<div class="relative w-20 h-20 shrink-0 circular-progress" style="--progress-val: 75; --progress-color: #4648d4;">
+<span class="relative z-10 font-label-md text-primary">75%</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<h3 class="font-headline-md text-label-md truncate">Senior UI Designer</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">8 Candidates Found</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-primary uppercase tracking-wider">In Progress</span>
+</div>
+</div>
+</div>
+<!-- Progress Card 2 -->
+<div class="bg-surface-container-lowest p-md rounded-lg shadow-sm border border-surface-container flex items-center gap-md hover:shadow-md transition-shadow">
+<div class="relative w-20 h-20 shrink-0 circular-progress" style="--progress-val: 42; --progress-color: #4648d4;">
+<span class="relative z-10 font-label-md text-primary">42%</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<h3 class="font-headline-md text-label-md truncate">Full Stack Engineer</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">14 Candidates Found</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-primary uppercase tracking-wider">Deep Sourcing</span>
+</div>
+</div>
+</div>
+<!-- Progress Card 3 -->
+<div class="hidden lg:flex bg-surface-container-lowest p-md rounded-lg shadow-sm border border-surface-container items-center gap-md hover:shadow-md transition-shadow">
+<div class="relative w-20 h-20 shrink-0 circular-progress" style="--progress-val: 15; --progress-color: #4648d4;">
+<span class="relative z-10 font-label-md text-primary">15%</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<h3 class="font-headline-md text-label-md truncate">Product Manager</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">3 Candidates Found</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-primary uppercase tracking-wider">Initial Scan</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Completed Section (Bento Grid Style) -->
+<section>
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Search History</h2>
+<p class="font-body-md text-on-surface-variant">Review and re-engage previous talent pools</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
+<!-- Completed Card 1 (Large) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-lg border border-surface-container overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="flex flex-col md:flex-row h-full">
+<div class="w-full md:w-1/3 h-48 md:h-auto overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="A high-end architectural shot of a modern, brightly lit office interior with glass walls and minimalist furniture. The color palette features soft indigos and warm whites, embodying a professional and sophisticated Lumina Talent atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhOnBiMGIZ5-AX7H7fYf8e5tzgil9QymXoRfOykle1cJv6AYmf-rbYCu64_ioafr-GFz3YTWcfTC_HiN3JQWXK16SST5TTF2LlhfIeRvBXGIQqoXxWoGJbc-OwRpbqVI1jt_vn_-2S3_wwq0tsCOxPKL0al_t_gnFEilaFy2Jr0cSVtgfhZ0mjie2m_s3bROWVkeyEPpDU8rWFDc-CyqP4YAESP6TA8IAuPpm2RgoZz4C0YlIDlvy83yVIgMmjzc3yYk019g7jfYw')"></div>
+</div>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full font-label-sm">Success</span>
+<p class="font-label-md text-on-surface-variant">2 weeks ago</p>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Principal Data Scientist</h3>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="flex items-center gap-1 font-label-md text-secondary"><span class="material-symbols-outlined text-sm">location_on</span>San Francisco, CA</span>
+<span class="flex items-center gap-1 font-label-md text-secondary"><span class="material-symbols-outlined text-sm">payments</span>$220k - $280k</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-surface-container pt-4">
+<div class="flex -space-x-3 overflow-hidden">
+<img alt="Avatar 1" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVgueZ-vHHg93GoMYk9zZ3x21JBf2c7nK1kvB9xPLnpIm0u6SDIGEs_jxksyVRQylSYSarcNg7j5fbreqAAokGUt95LGfmM5odvVuIQITGwkFCykEWzv7g3uX4bvGKMO8wHA15DGRR39mS5EX-ZPDtUXWSy2s0NVneyaqP4whTWk7rrZZajhaTM3WeyAbAk8YkViEWNmeRbKvF5EFZBeqnF5gcaBl0kWNUcZ9n5p_lqF6Mfct1A8DfvtAVeQqLoQrdPI9DbB5vjyk"/>
+<img alt="Avatar 2" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn9_cKgZV23KWgkRh8HwZv0adB4lkZrHLSl8sKLtQ25O7Kp0mSwiNqGrh_6rzVA2boLXWhaWE_lb94UcY75QFzUrvxxMGgZv1QGi9woQe1bYEsPQ585_N1qW0yi1b-SENLO5K5CZ1TRg7sG0JlLKCkzJyeYowmnYoikRdSYFjSwa1ylsz3m7Z5Q1Tv4hdiKY1X_5TQ8QaUL9XaahEt2hvN6hJ_TiD5aKjLVjWSdpxxQ_xxwm1y1xScfAKkVoAMgZis1vtN0IookwQ"/>
+<img alt="Avatar 3" class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9kdjvlJ9Rsqq-ruNEXipBiazlfpzs_5Q5r1MOF4nb2E8Upnyy8QB-tt0BDtrVW-NUFmrTzV9a4MY0dkgkhhe4cytlvKgmHg6_ZVGXeV6aAiqU_uO4liiGK_RmXnMywuShzJzXxKL4zdi-aCxkuAUmnQBPk73O48yBMHzQarsk98qpwsNfAWs4PIyG7C6HiVytbyjmwb70KXlTU4XYDAvfpx-dhKB1xrRQutU56WUs6A9LJhE7r_hvBaHn4KR8He3lQuYodS1oHa4"/>
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-surface-container-highest text-label-sm ring-2 ring-white">+12</div>
+</div>
+<button class="text-primary font-label-md hover:underline">View Pipeline</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Completed Card 2 (Standard) -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-lg border border-surface-container p-md hover:shadow-lg transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm">Fulfilled</span>
+<span class="material-symbols-outlined text-secondary">history</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">DevOps Architect</h3>
+<p class="font-body-md text-on-surface-variant mb-6">London (Remote Option)</p>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-surface-container-low p-2 rounded text-center">
+<p class="text-secondary font-label-sm uppercase">Found</p>
+<p class="text-on-surface font-headline-md">48</p>
+</div>
+<div class="bg-surface-container-low p-2 rounded text-center">
+<p class="text-secondary font-label-sm uppercase">Hired</p>
+<p class="text-on-surface font-headline-md">1</p>
+</div>
+</div>
+<button class="w-full bg-primary-fixed text-on-primary-fixed py-2 rounded-full font-label-md hover:bg-primary hover:text-white transition-colors">Repeat Search</button>
+</div>
+<!-- Completed Card 3 (Compact) -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-lg border border-surface-container p-md hover:shadow-lg transition-all duration-300">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-surface-container-highest text-secondary px-3 py-1 rounded-full font-label-sm">Closed</span>
+<p class="font-label-md text-on-surface-variant">1 mo ago</p>
+</div>
+<h3 class="font-headline-md text-headline-md mb-1">Growth Lead</h3>
+<p class="font-body-md text-on-surface-variant mb-4">New York, NY</p>
+<div class="flex items-center gap-2">
+<div class="h-1 flex-1 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-outline rounded-full w-full"></div>
+</div>
+<span class="font-label-sm text-secondary">100%</span>
+</div>
+</div>
+<!-- Completed Card 4 (Medium) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-lg border border-surface-container p-md flex flex-col md:flex-row gap-6 hover:shadow-lg transition-all duration-300">
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md mb-2">Creative Director</h3>
+<p class="font-body-md text-on-surface-variant mb-4">Paris / Hybrid</p>
+<div class="flex gap-3">
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-outline-variant w-24">
+<p class="text-secondary font-label-sm uppercase">Apps</p>
+<p class="text-on-surface font-headline-md">132</p>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-lg border border-outline-variant w-24">
+<p class="text-secondary font-label-sm uppercase">Short</p>
+<p class="text-on-surface font-headline-md">6</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/3 flex flex-col justify-center">
+<div class="p-3 bg-surface rounded-lg mb-3">
+<p class="font-label-sm text-secondary mb-1">Final Decision</p>
+<p class="font-label-md text-primary font-bold">Offer Accepted</p>
+</div>
+<button class="bg-surface-container-highest text-secondary py-2 rounded-full font-label-md hover:bg-surface-container-high">Export Report</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-28 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200 z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 bg-surface shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all active:scale-95 duration-150 px-4 py-1" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all active:scale-95 duration-150 px-4 py-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for progress indicators
+        document.querySelectorAll('.circular-progress').forEach(el => {
+            const val = el.style.getPropertyValue('--progress-val');
+            // Slight delay to feel like it's loading when the page appears
+            setTimeout(() => {
+                el.classList.add('transition-all', 'duration-1000');
+            }, 100);
+        });
+
+        // Toggle hover states or card interactions if needed
+        const cards = document.querySelectorAll('.bg-surface-container-lowest');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Potential to trigger animations or sounds
+            });
+        });
+    </script>
+</body></html>

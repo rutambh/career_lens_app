@@ -12,8 +12,6 @@ export type SearchFilters = {
   currency: string;
   currencyCode: string;
   salaryFormat: string;
-  state?: string;
-  district?: string;
 };
 
 // Raw scraped page data point

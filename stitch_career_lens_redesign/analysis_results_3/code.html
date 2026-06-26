@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireScope | Research Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#00315d",
+                    "on-error": "#690005",
+                    "inverse-surface": "#d9e4f0",
+                    "tertiary-container": "#df7412",
+                    "on-surface": "#d9e4f0",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-bright": "#303a44",
+                    "error-container": "#93000a",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdcc6",
+                    "on-tertiary-fixed": "#311400",
+                    "error": "#ffb4ab",
+                    "primary-fixed-dim": "#adc6ff",
+                    "primary-container": "#4d8eff",
+                    "inverse-primary": "#005ac2",
+                    "on-secondary-container": "#d6e5ff",
+                    "secondary-container": "#0267b8",
+                    "on-tertiary-fixed-variant": "#723600",
+                    "on-tertiary-container": "#461f00",
+                    "tertiary-fixed-dim": "#ffb786",
+                    "secondary": "#a4c9ff",
+                    "on-primary-container": "#00285d",
+                    "surface-variant": "#2c363f",
+                    "on-secondary-fixed-variant": "#004883",
+                    "surface-container-highest": "#2c363f",
+                    "background": "#0a141d",
+                    "on-background": "#d9e4f0",
+                    "on-primary-fixed-variant": "#004395",
+                    "surface-tint": "#adc6ff",
+                    "primary": "#adc6ff",
+                    "on-tertiary": "#502400",
+                    "surface-container": "#162129",
+                    "surface-container-low": "#121d25",
+                    "surface-container-lowest": "#050f17",
+                    "tertiary": "#ffb786",
+                    "on-primary-fixed": "#001a42",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "outline": "#8c909f",
+                    "surface-dim": "#0a141d",
+                    "secondary-fixed": "#d4e3ff",
+                    "outline-variant": "#424754",
+                    "on-secondary-fixed": "#001c39",
+                    "inverse-on-surface": "#27323b",
+                    "surface-container-high": "#212b34",
+                    "surface": "#0a141d",
+                    "on-primary": "#002e6a",
+                    "on-surface-variant": "#c2c6d6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xs": "8px",
+                    "xl": "32px",
+                    "gutter-mobile": "12px",
+                    "sm": "12px",
+                    "margin-mobile": "20px",
+                    "base": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Outfit"],
+                    "body-md": ["Outfit"],
+                    "headline-lg": ["Outfit"],
+                    "body-sm": ["Outfit"],
+                    "headline-sm": ["Outfit"],
+                    "headline-lg-mobile": ["Outfit"],
+                    "headline-md": ["Outfit"],
+                    "label-md": ["Outfit"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #010810;
+            color: #d9e4f0;
+            font-family: 'Outfit', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .chart-bar {
+            transition: height 1s ease-out;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/10 dark:bg-surface-container-lowest/10 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-margin-mobile h-12 w-full">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary active:scale-95 transition-transform cursor-pointer">search</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-background">HireScope</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20 active:scale-95 transition-transform cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a diverse female executive in a minimalist studio setting. Soft lighting highlights her confident expression. The background is a dark, sophisticated blue with subtle gradients, perfectly matching the HireScope premium tech-forward aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1GygGhamstNVXkptligVR12Zw_rDGXc_2nfO8M_TlLiNpCBywrb9Jlu-imbayYJuLcasqgILwhHob6PN4R7MYmi56lL3qeg8HUSLiUUTmtZEXf_LKxTW78UDa_B4hZM4Houz8gRaObxsFDLH-NJ4K46Gd-NEuwjZw5OWEqpBrIQLfovzrkInNiYEYQs1gvM0FGJlB5NTRXnBFz5N_g2-ZQ8M_l44__qdu-veKdbin2Gpuvo6dx6rV-iEbdVZ-dgHAH7VtxUaLFo4"/>
+</div>
+</header>
+<main class="flex-1 mt-12 mb-32 px-margin-mobile pt-lg space-y-xl overflow-x-hidden">
+<!-- Hero Section: Salary Data -->
+<section class="flex flex-col items-center text-center space-y-lg">
+<div class="space-y-base">
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest">Market Valuation</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg text-on-background font-bold">$168,500</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Median for Senior Software Architect in San Francisco</p>
+</div>
+<!-- Simplified Distribution Chart -->
+<div class="w-full max-w-md h-40 flex items-end justify-between gap-xs px-md">
+<div class="flex-1 bg-surface-container-low rounded-t-lg chart-bar" style="height: 30%;"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg chart-bar" style="height: 55%;"></div>
+<div class="flex-1 bg-primary rounded-t-lg chart-bar shadow-[0_0_20px_rgba(173,198,255,0.3)]" style="height: 100%;"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg chart-bar" style="height: 65%;"></div>
+<div class="flex-1 bg-surface-container-low rounded-t-lg chart-bar" style="height: 25%;"></div>
+</div>
+<div class="flex justify-between w-full max-w-md px-md font-label-md text-label-md text-on-surface-variant/60">
+<span>$120k</span>
+<span>$210k</span>
+</div>
+</section>
+<!-- Insight Cards (Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Company Pulse -->
+<div class="glass-card rounded-xl p-lg flex flex-col space-y-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="font-headline-sm text-headline-sm">Company Pulse</h3>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-center bg-white/5 p-sm rounded-lg">
+<span class="font-body-md text-body-md">Hiring Velocity</span>
+<span class="text-primary font-bold">High</span>
+</div>
+<div class="flex justify-between items-center bg-white/5 p-sm rounded-lg">
+<span class="font-body-md text-body-md">Retention Rate</span>
+<span class="text-primary font-bold">88%</span>
+</div>
+</div>
+</div>
+<!-- Market Sentiment -->
+<div class="glass-card rounded-xl p-lg flex flex-col space-y-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">sentiment_satisfied</span>
+<h3 class="font-headline-sm text-headline-sm">Market Sentiment</h3>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="flex flex-col gap-xs">
+<span class="font-label-md text-label-md text-primary">PROS</span>
+<ul class="font-body-sm text-body-sm text-on-surface-variant space-y-base">
+<li>• Equity Packages</li>
+<li>• Tech Stack</li>
+</ul>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">CONS</span>
+<ul class="font-body-sm text-body-sm text-on-surface-variant/60 space-y-base">
+<li>• WFH Policy</li>
+<li>• Slow Interview</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Context Image -->
+<section class="w-full">
+<div class="w-full h-48 rounded-xl overflow-hidden relative border border-white/10 group">
+<img class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700" data-alt="A macro close-up of a high-end mechanical keyboard with glowing blue backlighting in a dark room. The lighting is cold and precise, reflecting a high-tech engineering environment. Dust particles dance in a single beam of light. The overall mood is focused, professional, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbgUXG5Keac1j9Q-iuRNiS_v__JkGxVBW70cDFCo6faQ3BvRzZnIEJRvw3CixdOmeNMN1SS1ozb-8-PLLwDRmjBwG-17GdzmYMxtQGKxxjea_C43mCIF7d6yBEjsMCrMrAnN2E6nAeXHKg05AprKUHAbDhm3T5tbJho9eRCQhhZjZ5-G6YZHyUGqNJWg5dzoRVSRbqiZdOSZr4kpwaQLlG8RsBHBwrexraComHRP4QpcUz1KJhbtzoHfJa9nn75gCHshxo3Iy40oQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+<div class="absolute bottom-md left-md">
+<span class="bg-primary text-on-primary px-sm py-xs rounded-full font-label-md text-label-md">Verified Data</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar (Fixed) -->
+<div class="fixed bottom-0 w-full z-50 flex justify-center items-center pb-lg px-margin-mobile">
+<div class="bg-surface-container/80 dark:bg-surface-container-low/80 backdrop-blur-2xl border border-white/10 shadow-xl rounded-full px-lg py-sm flex items-center gap-xl w-full max-w-md">
+<button class="flex-1 bg-primary text-on-primary py-sm rounded-full font-headline-sm text-headline-sm active:scale-95 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined">bookmark</span>
+                Save Report
+            </button>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:bg-white/5 p-xs rounded-full transition-all active:scale-90">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="text-on-surface-variant hover:bg-white/5 p-xs rounded-full transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Hidden for focused content but compliant with shell logic if it were top level) -->
+<!-- Determined active item is "history" or "search" depending on flow; but prompt asks for "Action: Save Report" as focus -->
+<script>
+        // Micro-interaction for chart bars
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach((bar, index) => {
+                const finalHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = finalHeight;
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

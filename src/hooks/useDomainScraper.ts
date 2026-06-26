@@ -62,9 +62,9 @@ function extractUrlsFromHtml(html: string): string[] {
 
 function buildSearchQuery(
   company: string, role: string, country: string,
-  state?: string, district?: string, template?: string
+  template?: string
 ): string {
-  const location = [country, state, district].filter(Boolean).join(' ');
+  const location = country;
   const tpl = template ?? '{company} {role} {country} salary reviews';
   return tpl.replace('{company}', company).replace('{role}', role).replace('{country}', location);
 }
@@ -148,8 +148,7 @@ export function useDomainScraper() {
   }, []);
 
   const discoverUrls = useCallback(async (
-    company: string, role: string, country: string,
-    state?: string, district?: string
+    company: string, role: string, country: string
   ): Promise<string[]> => {
     const maxDomains = useAppStore.getState().maxDomainsToScrape;
     const allRawUrls: string[] = [];
@@ -159,7 +158,7 @@ export function useDomainScraper() {
 
     for (const template of templates) {
       if (allRawUrls.length >= maxDomains * 2) break;
-      const query = buildSearchQuery(company, role, country, state, district, template);
+      const query = buildSearchQuery(company, role, country, template);
 
       for (const engine of engines) {
         if (allRawUrls.length >= maxDomains * 2) break;

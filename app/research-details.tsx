@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity, useColorScheme,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useSearchStore } from '../src/store/searchStore';
 import { useAppStore } from '../src/store/appStore';
@@ -11,25 +11,28 @@ import { LightColors, DarkColors, Spacing, Radius } from '../src/constants/theme
 
 export default function ResearchDetailsScreen() {
   const router = useRouter();
+  const { live } = useLocalSearchParams<{ live?: string }>();
   const searchStore = useSearchStore();
   const { theme } = useAppStore();
   const systemColorScheme = useColorScheme();
   const isDark = theme === 'dark' || (theme === 'system' && systemColorScheme === 'dark');
   const c = isDark ? DarkColors : LightColors;
 
+  const isLive = live === 'true';
+
   const {
+    activeFilters, activePhase, activeRawDataPoints,
+    activeUrlsDiscovered, activeUrlsProcessed,
     filters: completedFilters, finalResults,
-    activeFilters, activePhase,
-    activeRawDataPoints, activeUrlsDiscovered, activeUrlsProcessed,
   } = searchStore;
 
-  const isLive = activePhase !== 'idle' && activePhase !== 'complete';
-  const filters = completedFilters || activeFilters;
-
-  // Build URL list from live data or completed results
+  const filters = isLive ? activeFilters : completedFilters;
   const rawUrls = isLive
     ? activeRawDataPoints.filter(p => p.success).map(p => p.source)
     : (finalResults?.rawUrls ?? []);
+  const pagesCount = isLive
+    ? `${activeUrlsProcessed}/${activeUrlsDiscovered}`
+    : String(rawUrls.length);
 
   const phaseLabel: Record<string, string> = {
     idle: 'Idle', searching: 'Scanning the web', extracting: 'Extracting data',
@@ -49,7 +52,7 @@ export default function ResearchDetailsScreen() {
               Research Details
             </Text>
             <Text style={[styles.headerMeta, { color: c.textSecondary }]} numberOfLines={1}>
-              {filters.company} · {filters.role}
+              {filters?.company || ''} · {filters?.role || ''}
             </Text>
           </View>
           <View style={{ width: 40 }} />
@@ -67,7 +70,7 @@ export default function ResearchDetailsScreen() {
             </Text>
             {isLive && (
               <View style={styles.statusStats}>
-                <Text style={[styles.statusStat, { color: c.textMuted }]}>{activeUrlsProcessed}/{activeUrlsDiscovered} pages</Text>
+                <Text style={[styles.statusStat, { color: c.textMuted }]}>{pagesCount} pages</Text>
               </View>
             )}
           </View>

@@ -7,7 +7,7 @@ export function buildExtractionPrompt(
   filters: SearchFilters,
   pageCount: number
 ): string {
-  const location = [filters.country, filters.state, filters.district].filter(Boolean).join(', ');
+  const location = filters.country;
 
   return `You are a precise data extraction engine. Extract structured data from employee review pages about a company.
 
@@ -52,8 +52,6 @@ export type AIEnhancerInput = {
   company: string;
   role: string;
   country: string;
-  state: string;
-  district: string;
   experience: number;
   currentSalary: number;
   rating: number | null;
@@ -82,8 +80,6 @@ export function buildEnhancementInput(
     company: filters.company,
     role: filters.role,
     country: filters.country,
-    state: filters.state || '',
-    district: filters.district || '',
     experience: filters.experience,
     currentSalary: filters.currentSalary,
     rating: results.rating,
@@ -96,7 +92,7 @@ export function buildEnhancementInput(
 }
 
 export function buildEnhancementPrompt(input: AIEnhancerInput): string {
-  const location = [input.country, input.state, input.district].filter(Boolean).join(', ');
+  const location = input.country;
 
   return `You are a professional career and salary research analyst.
 Write a detailed analysis of the research findings below in 5-7 sentences.

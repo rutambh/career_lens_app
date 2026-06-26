@@ -98,7 +98,7 @@ export function useScraper() {
       try {
         logger.phase('searching', `Discovering URLs for ${filters.company} - ${filters.role}`);
         discoveredUrls = await domainScraper.discoverUrls(
-          filters.company, filters.role, filters.country, filters.state, filters.district
+          filters.company, filters.role, filters.country
         );
       } catch (err) {
         logger.error('Discovery', 'URL discovery failed', err);

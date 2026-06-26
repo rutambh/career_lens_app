@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Appearance } from 'react-native';
+import { Appearance, useColorScheme } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useNotification } from '../src/hooks/useNotification';
 import { useAppStore } from '../src/store/appStore';
 import { BackgroundScraper } from '../src/components/BackgroundScraper';
+import { LightColors, DarkColors } from '../src/constants/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
 // Suppress known benign crash from whatwg-fetch polyfill (RangeError: status 0)
-if (global.ErrorUtils) {
-  const origHandler = global.ErrorUtils.getGlobalHandler();
-  global.ErrorUtils.setGlobalHandler((error, isFatal) => {
+const globalAny = global as any;
+if (globalAny.ErrorUtils) {
+  const origHandler = globalAny.ErrorUtils.getGlobalHandler();
+  globalAny.ErrorUtils.setGlobalHandler((error: any, isFatal: any) => {
     if (error?.message?.includes("Failed to construct 'Response'")) {
       console.warn('[HireScope] Suppressed whatwg-fetch polyfill error:', error.message);
       return;
@@ -24,6 +26,9 @@ if (global.ErrorUtils) {
 export default function RootLayout() {
   useNotification();
   const theme = useAppStore((state) => state.theme);
+  const systemColorScheme = useColorScheme();
+  const isDark = theme === 'dark' || (theme === 'system' && systemColorScheme === 'dark');
+  const c = isDark ? DarkColors : LightColors;
 
   useEffect(() => {
     if (theme === 'dark') Appearance.setColorScheme('dark');
@@ -38,9 +43,8 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar style={theme === 'dark' ? 'light' : theme === 'light' ? 'dark' : 'auto'} />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#0B0B1A' } }}>
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: c.bg } }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="settings" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
         <Stack.Screen name="results" options={{ animation: 'slide_from_right' }} />
       </Stack>
       <BackgroundScraper />

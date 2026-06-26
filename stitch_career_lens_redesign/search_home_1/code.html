@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireScope - Find Your Market Value</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dfe1f5",
+                    "primary-container": "#3e90ff",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#b9c3ff",
+                    "surface-container": "#122131",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#273647",
+                    "secondary": "#c3c5d8",
+                    "secondary-fixed-dim": "#c3c5d8",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container-low": "#0d1c2d",
+                    "surface-container-lowest": "#010f1f",
+                    "surface-bright": "#2c3a4c",
+                    "surface": "#051424",
+                    "on-background": "#d4e4fa",
+                    "on-primary-fixed": "#001b3e",
+                    "on-primary-fixed-variant": "#00468d",
+                    "on-error": "#690005",
+                    "surface-container-highest": "#273647",
+                    "surface-tint": "#aac7ff",
+                    "on-secondary": "#2c303e",
+                    "error-container": "#93000a",
+                    "on-tertiary": "#00228a",
+                    "primary": "#aac7ff",
+                    "surface-dim": "#051424",
+                    "tertiary-fixed-dim": "#b9c3ff",
+                    "on-tertiary-fixed-variant": "#0033c1",
+                    "on-secondary-container": "#b5b7ca",
+                    "on-primary": "#003064",
+                    "surface-container-high": "#1c2b3c",
+                    "on-tertiary-container": "#001d7a",
+                    "on-secondary-fixed": "#171b29",
+                    "background": "#051424",
+                    "outline": "#8b91a0",
+                    "on-surface": "#d4e4fa",
+                    "inverse-surface": "#d4e4fa",
+                    "on-surface-variant": "#c0c6d6",
+                    "on-secondary-fixed-variant": "#424655",
+                    "inverse-primary": "#005db8",
+                    "on-tertiary-fixed": "#001257",
+                    "secondary-container": "#454858",
+                    "tertiary-container": "#6f88ff",
+                    "on-primary-container": "#002957",
+                    "tertiary-fixed": "#dde1ff",
+                    "outline-variant": "#414754",
+                    "primary-fixed-dim": "#aac7ff",
+                    "inverse-on-surface": "#233143"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "gutter": "16px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "max-width": "480px",
+                    "margin-mobile": "16px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Outfit"],
+                    "body-base": ["Inter"],
+                    "body-bold": ["Inter"],
+                    "display-lg": ["Outfit"],
+                    "headline-md": ["Outfit"],
+                    "stat-lg": ["Outfit"],
+                    "headline-lg-mobile": ["Outfit"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "body-bold": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "stat-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #051424;
+            color: #d4e4fa;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .lens-card {
+            background: rgba(39, 54, 71, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 145, 160, 0.4);
+        }
+
+        .glass-nav {
+            background: rgba(18, 33, 49, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .ambient-glow-button {
+            box-shadow: 0 0 15px rgba(170, 199, 255, 0.15);
+        }
+
+        .input-focus-glow:focus {
+            box-shadow: 0 0 8px rgba(170, 199, 255, 0.3);
+            outline: none;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Hide scrollbars for a clean look */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-base text-body-base bg-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/40">
+<div class="flex justify-between items-center h-16 px-md w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-sm active:scale-95 duration-150 ease-out cursor-pointer">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">HireScope</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant active:scale-95 duration-150 ease-out cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A clean, professional headshot of a recruitment specialist in a modern glass-walled office. The lighting is soft and natural, with a shallow depth of field focusing on the person. The color palette is composed of soft blues and crisp whites, maintaining a premium corporate tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD27N_Zkf7-Ftm7yonKjg8NqFlnAwicFqTRct1wGqnRs4L_72s8_qVW6N-PHxAhD-HlMSVVWidIM5kMm0nDoslKB87vsuuJXWHjqZPK4gQ2HfsN1ZnCR3u-J_xAkFDFrDGvT78W15ypOwWGVrX_B4ihNn5TN_VHEH1xgG5qcVP7GfXBT0UEjA4uQzLMX7lA30vxUNApjIcxQIEZsNRCh14Jy6valboZzZFsP1s8KIbWyEK5VuKqRqE6uXbVCkFPV4yGqFFj1N3KrOs"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-gutter w-full max-w-max-width mx-auto space-y-lg relative overflow-hidden">
+<!-- Background Animation Effect -->
+<div class="absolute inset-0 -z-10 pointer-events-none opacity-40">
+
+</div>
+<!-- Hero Section -->
+<section class="space-y-sm">
+<p class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Market Intelligence</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Find Your Market Value</h2>
+<p class="text-on-surface-variant leading-relaxed">Discover real-time salary benchmarks using our AI-driven global scouting network.</p>
+</section>
+<!-- Search Form Container -->
+<form class="lens-card p-lg rounded-xl space-y-lg" onsubmit="event.preventDefault();">
+<!-- Job Title Search -->
+<div class="space-y-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant block ml-1">ROLE OR SKILLS</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">work</span>
+<input class="w-full h-12 bg-surface-container-low border-1.5 border-outline-variant rounded-lg pl-12 pr-4 text-on-surface placeholder:text-outline/50 input-focus-glow focus:border-primary transition-all font-body-base" placeholder="e.g. QA Automation Lead" type="text"/>
+</div>
+</div>
+<!-- Cascade Filters -->
+<div class="grid grid-cols-1 gap-md">
+<div class="space-y-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant block ml-1">COUNTRY</label>
+<select class="w-full h-12 bg-surface-container-low border-1.5 border-outline-variant rounded-lg px-4 text-on-surface input-focus-glow focus:border-primary transition-all font-body-base appearance-none">
+<option>United States</option>
+<option>United Kingdom</option>
+<option>Germany</option>
+<option>Singapore</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant block ml-1">STATE</label>
+<select class="w-full h-12 bg-surface-container-low border-1.5 border-outline-variant rounded-lg px-4 text-on-surface input-focus-glow focus:border-primary transition-all font-body-base appearance-none">
+<option>California</option>
+<option>New York</option>
+<option>Texas</option>
+</select>
+</div>
+<div class="space-y-base">
+<label class="font-label-caps text-label-caps text-on-surface-variant block ml-1">DISTRICT</label>
+<select class="w-full h-12 bg-surface-container-low border-1.5 border-outline-variant rounded-lg px-4 text-on-surface input-focus-glow focus:border-primary transition-all font-body-base appearance-none">
+<option>Silicon Valley</option>
+<option>LA Basin</option>
+<option>San Diego</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-[52px] bg-primary text-on-primary font-body-bold rounded-lg ambient-glow-button hover:bg-primary-container transition-colors active:scale-[0.98] duration-150 flex items-center justify-center gap-2">
+<span>Start Research</span>
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</button>
+</form>
+<!-- Information Card -->
+<section class="lens-card p-md rounded-lg flex items-start gap-md border-primary/20 bg-primary-container/5">
+<div class="p-sm bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+<div class="space-y-xs">
+<h3 class="font-body-bold text-on-surface">Local Engine Active</h3>
+<p class="text-[14px] text-on-surface-variant leading-tight">Our scouting engine is currently scraping 142 local job boards and 2,400+ anonymous salary reports for the most accurate district-level data.</p>
+</div>
+</section>
+<!-- Visual Anchor (Map or Graphic) -->
+<div class="w-full h-48 rounded-xl overflow-hidden lens-card relative">
+<div class="absolute inset-0 z-0 grayscale opacity-40 mix-blend-overlay" data-alt="A sophisticated digital heat map overlaying a minimalist city grid. Glowing nodes representing data points are scattered across the urban geography, illuminated in vibrant tech-blue and deep navy tones. The atmosphere is high-tech, precise, and analytical, suggesting a live network of salary intelligence being visualized in real-time." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiQKkZLjJJWcqkYMA5sW-Q5nZFA187T2P3efqWczl6Y5K677trMfA4VeGmyPa39kyzAAhbtFkL0Hy5iI5R84PuLZY2Mtc6sNVnRBSVoWB0nqXHhYNlOvUmbEwoVryqpesB7MZcVDLyaCtMzmkqPrgZtcAnf0bcRG4J3sVDgijLK0WiVoihQY50wVGTaDxsNdS_3AXMdHBBnX-vfqhG5XorK6p9WetyiVSaBlVOXsg5lCsW5R4-HmgH_3syaju7TbP7HAZwf638FiQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="space-y-1">
+<p class="font-label-caps text-label-caps text-primary">LIVE COVERAGE</p>
+<p class="font-body-bold text-on-surface">Global Data Network</p>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-caps text-label-caps">San Francisco, CA</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 glass-nav border-t border-outline-variant/40 shadow-lg pb-safe">
+<div class="flex justify-around items-center h-20 px-gutter w-full max-w-max-width mx-auto">
+<!-- Search (Active) -->
+<a class="flex flex-col items-center justify-center text-primary relative after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 after:shadow-[0_0_8px_rgba(170,199,255,0.8)] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<!-- History -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps mt-1">History</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps mt-1">Settings</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for the search button
+        const searchBtn = document.querySelector('button');
+        searchBtn.addEventListener('click', () => {
+            searchBtn.innerHTML = '<span>Scanning...</span><span class="material-symbols-outlined animate-spin">refresh</span>';
+            setTimeout(() => {
+                searchBtn.innerHTML = '<span>Start Research</span><span class="material-symbols-outlined text-[20px]">analytics</span>';
+            }, 2000);
+        });
+
+        // Interactive focus for inputs
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

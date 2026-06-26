@@ -34,7 +34,7 @@ export function SalaryInput({ label, value, country, icon, onChange }: Props) {
         <TextInput
           style={[styles.input, { color: c.text }]}
           placeholder={placeholder}
-          placeholderTextColor={c.textMuted}
+          placeholderTextColor={c.text + '40'}
           keyboardType="numeric"
           value={value}
           onChangeText={onChange}

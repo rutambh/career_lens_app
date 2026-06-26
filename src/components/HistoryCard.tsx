@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, useColorScheme, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SearchRecord } from '../types';
 import { getCountryByName } from '../constants/countries';
@@ -12,6 +12,13 @@ type Props = {
   onView: (record: SearchRecord) => void;
   onDelete: (id: string) => void;
 };
+
+// Cover images from Stitch Completed list
+const COVER_IMAGES = [
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuAEZtcYXkow2SckzEiP3izbX0bGUvMAbYFARKgTCuC4R3JCSsQujwFKV2ZB4gWLNFbpNAux1rU7S_Lbdc8Ym6ob0tWbL-m-49xUl12bpHRV8fHuU2EDlvGX1elkXZ_rWBb1qNvy7-0nIZrhNWX36fYDzMy8_-pUZc3iGkFmkSMBFUGGt5TRs_ZcwXImCdwiT1frst9SNQ4KmKL2svOerwqZ2YMBWDEGkj85HKsc5vngK4daE-0WlKo2QOFGJFxksG6g6qrb6Of5Mvc',
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuB6hKtEw1YXwlhP15r3eD3dxs3wy4Qra9fdWW2d359sChVUv_ecBm9cF2gvSrMakiIZ6pNICaBFL9ivXwChMhIdNFjm13SobhHJzDBiBSXPg3HwCZRtPXT4LZNFca3jh24UvGnJbD5bgRI1IdLc6RUTwnByoS7gfw_cE0zNSOEvIjlXJ_l0bv-f3gqHi_U5lBbcEno07XPuSv1K-1130G94D9greiX_a3V14tKDh8pE4xhD9KUgP51JQYOeIaP_MNG7uGzzD4qcCIY',
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuBySmtTeijIuenzVd-FlfLzvRwPnRar9_v6U9ya0yy0RQSK3v1Sv-MUa4nQ23o2msJMdtwId9Yza2T2MZrx-zlao6IWTj7yIqx6_NLI1D_fjc-m0PCVU4EyZZlTIJBFsJhBvm2fvdkvV4NHRi8vGsOQleWslwdpcVmUETtyJXieTjX1APSWb4pyS6n9_9bvlGl98zilujVCZZSdzwdW9sMcgujeu2EyTIQLeFK1N-ID2drto7KlIR1Vu13GJhxy4eHVPJwXaMlC_pI',
+];
 
 export function HistoryCard({ record, onView, onDelete }: Props) {
   const { filters, results, timestamp } = record;
@@ -35,13 +42,6 @@ export function HistoryCard({ record, onView, onDelete }: Props) {
     ? Math.max(0, Math.round(((avgSalary - filters.currentSalary) / filters.currentSalary) * 100))
     : null;
 
-  const getRatingColor = (ratingVal: number | null) => {
-    if (ratingVal === null) return c.textMuted;
-    if (ratingVal >= 4) return c.success;
-    if (ratingVal >= 3) return c.warning;
-    return c.danger;
-  };
-
   const formatDate = (isoStr: string) => {
     const d = new Date(isoStr);
     const now = new Date();
@@ -51,77 +51,133 @@ export function HistoryCard({ record, onView, onDelete }: Props) {
     return `${diffDays}d ago`;
   };
 
-  const formatLocation = () => {
-    let loc = filters.country;
-    if (filters.state) loc += `, ${filters.state}`;
-    if (filters.district) loc += `, ${filters.district}`;
-    return loc;
-  };
+  // Determine cover image based on ID hash
+  const imageIndex = Math.abs(record.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % COVER_IMAGES.length;
+  const coverImage = COVER_IMAGES[imageIndex];
 
   return (
     <TouchableOpacity
-      style={[styles.card, { backgroundColor: c.card, borderColor: c.border }]}
+      style={[styles.card, { backgroundColor: isDark ? 'rgba(30, 29, 52, 0.4)' : c.card, borderColor: c.border }]}
       onPress={() => onView(record)}
       activeOpacity={0.85}
     >
-      <View style={styles.topRow}>
-        <View style={styles.titleArea}>
+      <View style={styles.contentWrap}>
+        <View style={styles.textWrap}>
           <View style={styles.titleRow}>
-            <View style={[styles.dot, { backgroundColor: c.primary }]} />
-            <Text style={[styles.company, { color: c.text }]} numberOfLines={1}>{filters.company}</Text>
+            <Text style={[styles.roleTitle, { color: c.text }]} numberOfLines={1}>
+              {filters.role}
+            </Text>
           </View>
-          <Text style={[styles.role, { color: c.textSecondary }]} numberOfLines={1}>{filters.role}</Text>
+          
+          <Text style={[styles.metaSub, { color: c.textSecondary }]}>
+            {filters.company} · {formatDate(timestamp)}
+          </Text>
+
+          <View style={styles.infoGrid}>
+            <View style={styles.infoItem}>
+              <Ionicons name="location-outline" size={13} color={c.textSecondary} />
+              <Text style={[styles.infoVal, { color: c.textSecondary }]} numberOfLines={1}>
+                {filters.country}
+              </Text>
+            </View>
+            <View style={styles.infoItem}>
+              <Ionicons name="cash-outline" size={13} color={c.textSecondary} />
+              <Text style={[styles.infoVal, { color: c.textSecondary }]} numberOfLines={1}>
+                {formattedMax.split('/')[0]}
+              </Text>
+            </View>
+            <View style={styles.infoItem}>
+              <Ionicons name="people-outline" size={13} color={c.textSecondary} />
+              <Text style={[styles.infoVal, { color: c.textSecondary }]}>
+                {results.sourcesCount || 0} Sources
+              </Text>
+            </View>
+          </View>
         </View>
-        <TouchableOpacity onPress={() => onDelete(record.id)} style={styles.deleteBtn} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+      </View>
+
+      <View style={styles.actionArea}>
+        <TouchableOpacity onPress={() => onDelete(record.id)} style={styles.deleteBtn}>
           <Ionicons name="trash-outline" size={16} color={c.danger} />
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.metaRow}>
-        <Ionicons name="location-outline" size={11} color={c.primary} />
-        <Text style={[styles.metaText, { color: c.primary }]} numberOfLines={1}>{formatLocation()}</Text>
-        <Text style={[styles.metaDot, { color: c.textMuted }]}>·</Text>
-        <Ionicons name="time-outline" size={11} color={c.textMuted} />
-        <Text style={[styles.metaText, { color: c.textMuted }]}>{formatDate(timestamp)}</Text>
-      </View>
-
-      <View style={[styles.statsRow, { backgroundColor: c.surfaceAlt }]}>
-        <View style={styles.statItem}>
-          <Text style={[styles.statLabel, { color: c.textMuted }]}>Rating</Text>
-          <Text style={[styles.statValue, { color: getRatingColor(results.rating) }]}>
-            {results.rating !== null ? `★ ${results.rating.toFixed(1)}` : '—'}
-          </Text>
-        </View>
-        <View style={[styles.statDivider, { backgroundColor: c.border }]} />
-        <View style={styles.statItem}>
-          <Text style={[styles.statLabel, { color: c.textMuted }]}>Salary</Text>
-          <Text style={[styles.statValue, { color: c.text }]} numberOfLines={1}>{formattedMax}</Text>
-        </View>
-        <View style={[styles.statDivider, { backgroundColor: c.border }]} />
-        <View style={styles.statItem}>
-              <Text style={[styles.statLabel, { color: c.textMuted }]}>Highest Hike</Text>
-          <Text style={[styles.statValue, { color: c.success }]}>{avgHike !== null ? `+${avgHike}%` : '—'}</Text>
-        </View>
+        <TouchableOpacity style={[styles.detailsBtn, { backgroundColor: c.primaryLight, borderColor: c.primary + '30' }]} onPress={() => onView(record)}>
+          <Text style={[styles.detailsBtnText, { color: c.primary }]}>Details</Text>
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { borderRadius: Radius.xl, marginBottom: Spacing.md, borderWidth: 1, padding: Spacing.lg },
-  topRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
-  titleArea: { flex: 1, marginRight: Spacing.sm },
-  titleRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm, marginBottom: 2 },
-  dot: { width: 7, height: 7, borderRadius: 3.5 },
-  company: { fontSize: 16, fontWeight: '700' },
-  role: { fontSize: 12, fontWeight: '500', marginLeft: Spacing.lg + 2 },
-  deleteBtn: { width: 32, height: 32, borderRadius: Radius.sm, alignItems: 'center', justifyContent: 'center' },
-  metaRow: { flexDirection: 'row', alignItems: 'center', marginTop: Spacing.xs, marginBottom: Spacing.md, gap: 3, marginLeft: Spacing.lg + 2 },
-  metaText: { fontSize: 11, fontWeight: '500', flexShrink: 1 },
-  metaDot: { fontSize: 11, marginHorizontal: 1 },
-  statsRow: { flexDirection: 'row', borderRadius: Radius.md, padding: Spacing.sm },
-  statItem: { flex: 1, alignItems: 'center' },
-  statDivider: { width: 1, marginHorizontal: Spacing.xs },
-  statLabel: { fontSize: 9, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 1 },
-  statValue: { fontSize: 12, fontWeight: '700' },
+  card: {
+    borderRadius: 16,
+    borderWidth: 1,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    marginBottom: Spacing.sm,
+  },
+  contentWrap: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+  },
+  textWrap: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 6,
+  },
+  roleTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+    flex: 1,
+  },
+  metaSub: {
+    fontSize: 10,
+    fontWeight: '500',
+    marginTop: 1,
+  },
+  infoGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginTop: 4,
+  },
+  infoItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+  },
+  infoVal: {
+    fontSize: 9,
+    fontWeight: '600',
+  },
+  actionArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: Spacing.xs,
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(255,255,255,0.05)',
+    paddingTop: Spacing.xs,
+  },
+  deleteBtn: {
+    width: 28,
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  detailsBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 9999,
+    borderWidth: 1,
+  },
+  detailsBtnText: {
+    fontSize: 10,
+    fontWeight: '700',
+  },
 });

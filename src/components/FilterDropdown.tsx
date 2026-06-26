@@ -41,7 +41,7 @@ export function FilterDropdown({ label, selectedValue, options, icon, onSelect }
           {selectedValue ? (
             <Text style={[styles.triggerText, { color: c.text }]}>{selectedValue}</Text>
           ) : (
-            <Text style={[styles.placeholder, { color: c.textMuted }]}>Select country</Text>
+            <Text style={[styles.placeholder, { color: c.text + '40' }]}>Select country</Text>
           )}
           <Ionicons name="chevron-down" size={16} color={c.textMuted} />
         </View>
@@ -62,7 +62,7 @@ export function FilterDropdown({ label, selectedValue, options, icon, onSelect }
               <TextInput
                 style={[styles.searchInput, { color: c.text }]}
                 placeholder="Search countries..."
-                placeholderTextColor={c.textMuted}
+                placeholderTextColor={c.text + '40'}
                 value={query}
                 onChangeText={setQuery}
                 autoFocus

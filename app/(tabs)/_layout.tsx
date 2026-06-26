@@ -5,13 +5,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAppStore } from '../../src/store/appStore';
 import { LightColors, DarkColors, Radius } from '../../src/constants/theme';
 
-function TabIcon({ focused, name }: { focused: boolean; name: 'search-outline' | 'time-outline' }) {
+function TabIcon({ focused, name }: { focused: boolean; name: 'search-outline' | 'time-outline' | 'settings-outline' }) {
   const { theme } = useAppStore();
   const systemColorScheme = useColorScheme();
   const isDark = theme === 'dark' || (theme === 'system' && systemColorScheme === 'dark');
   const c = isDark ? DarkColors : LightColors;
 
-  const filledName = name === 'search-outline' ? 'search' : 'time';
+  const filledName = name === 'search-outline' ? 'search' : name === 'time-outline' ? 'time' : 'settings';
 
   return (
     <View style={{
@@ -56,6 +56,10 @@ export default function TabLayout() {
       <Tabs.Screen
         name="history"
         options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="time-outline" /> }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="settings-outline" /> }}
       />
     </Tabs>
   );

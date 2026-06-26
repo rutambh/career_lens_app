@@ -12,7 +12,6 @@ export const APP_CONFIG = {
   maxUrlsMinimum: 5,
 
   // Search query templates — {company}, {role}, and {country} are replaced at runtime
-  // {country} expands to "Country State District" — drives location-aware results
   //
   // Three targeted categories: Reviews (pros/cons), Ratings, Salary
   // Each category has a primary and a variant query for broader coverage.

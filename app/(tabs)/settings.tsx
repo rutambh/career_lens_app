@@ -1,16 +1,16 @@
 import React, { useState, useCallback, useRef } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, ScrollView, Linking,
-  Platform, Alert, Modal, useColorScheme, PanResponder,
+  Platform, Alert, Modal, useColorScheme, PanResponder, Switch
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';
-import { useAppStore } from '../src/store/appStore';
-import { useAIModel } from '../src/hooks/useAIModel';
-import { APP_CONFIG } from '../src/constants/config';
-import { LightColors, DarkColors, Spacing, Radius } from '../src/constants/theme';
+import { useAppStore } from '../../src/store/appStore';
+import { useAIModel } from '../../src/hooks/useAIModel';
+import { APP_CONFIG } from '../../src/constants/config';
+import { LightColors, DarkColors, Spacing, Radius } from '../../src/constants/theme';
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 MB';
@@ -30,6 +30,11 @@ export default function SettingsScreen() {
   const systemColorScheme = useColorScheme();
   const aiModel = useAIModel();
   const [downloadConfirmVisible, setDownloadConfirmVisible] = useState(false);
+
+
+
+  // Highlights color selections
+  const [selectedHighlight, setSelectedHighlight] = useState('indigo');
 
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderLeft, setSliderLeft] = useState(0);
@@ -61,11 +66,6 @@ export default function SettingsScreen() {
   ).current;
 
   const sliderFillPct = ((maxDomainsToScrape - 10) / 40) * 100;
-
-  const handleBack = () => {
-    if (router.canGoBack()) router.back();
-    else router.replace('/(tabs)');
-  };
 
   const handleCopyUPI = async () => {
     await Clipboard.setStringAsync('rutambh@upi');
@@ -102,6 +102,13 @@ export default function SettingsScreen() {
     Linking.openURL(`https://play.google.com/store/apps/details?id=${APP_CONFIG.packageName}`);
   };
 
+  const handleLogout = () => {
+    Alert.alert('Logout', 'Are you sure you want to log out from HireScope?', [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Logout', style: 'destructive', onPress: () => router.replace('/(tabs)') },
+    ]);
+  };
+
   const isDark = theme === 'dark' || (theme === 'system' && systemColorScheme === 'dark');
   const C = isDark ? DarkColors : LightColors;
 
@@ -120,10 +127,18 @@ export default function SettingsScreen() {
     const cfg = statusCfg[status] || statusCfg.not_installed;
 
     return (
-      <View style={[styles.card, { backgroundColor: C.card, borderColor: C.border }]}>
+      <View style={[styles.aiCard, { 
+        backgroundColor: isDark ? 'rgba(18, 33, 49, 0.4)' : C.card, 
+        borderColor: isDark ? C.border : 'transparent',
+        shadowColor: isDark ? '#000' : C.primary,
+        shadowOpacity: isDark ? 0.15 : 0.04,
+        shadowOffset: { width: 0, height: 4 },
+        shadowRadius: 10,
+        elevation: 3
+      }]}>
         <View style={styles.aiHeader}>
           <View style={[styles.aiIcon, { backgroundColor: C.primaryLight }]}>
-            <Ionicons name="sparkles" size={20} color={C.primary} />
+            <Ionicons name="sparkles" size={18} color={C.primary} />
           </View>
           <View style={styles.aiHeaderText}>
             <Text style={[styles.aiName, { color: C.text }]}>{APP_CONFIG.modelDisplayName}</Text>
@@ -140,19 +155,19 @@ export default function SettingsScreen() {
               <Text style={[styles.progressPct, { color: C.accent }]}>{progressPct}%</Text>
               {speedBytesPerSec > 0 && <Text style={[styles.speedText, { color: C.textSecondary }]}>{formatSpeed(speedBytesPerSec)}</Text>}
             </View>
-            <View style={[styles.progressTrack, { backgroundColor: C.surfaceAlt }]}>
+            <View style={[styles.progressTrack, { backgroundColor: C.surface }]}>
               <View style={[styles.progressFill, { backgroundColor: C.accent, width: `${progressPct}%` }]} />
             </View>
             <Text style={[styles.progressBytes, { color: C.textMuted }]}>
               {formatBytes(downloadedBytes)} / {formatBytes(totalBytes > 0 ? totalBytes : APP_CONFIG.modelExpectedSizeMb * 1024 * 1024)}
             </Text>
             <View style={styles.actionRow}>
-              <TouchableOpacity style={[styles.smallBtn, { backgroundColor: C.surfaceAlt, borderColor: C.border }]} onPress={aiModel.pauseDownload}>
-                <Ionicons name="pause" size={14} color={C.text} />
+              <TouchableOpacity style={[styles.smallBtn, { backgroundColor: isDark ? C.surface : '#FFF', borderColor: isDark ? C.border : 'rgba(0,0,0,0.06)' }]} onPress={aiModel.pauseDownload}>
+                <Ionicons name="pause" size={12} color={C.text} />
                 <Text style={[styles.smallBtnText, { color: C.text }]}>Pause</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.smallBtn, { backgroundColor: C.dangerLight, borderColor: C.danger + '30' }]} onPress={aiModel.cancelDownload}>
-                <Ionicons name="close" size={14} color={C.danger} />
+                <Ionicons name="close" size={12} color={C.danger} />
                 <Text style={[styles.smallBtnText, { color: C.danger }]}>Cancel</Text>
               </TouchableOpacity>
             </View>
@@ -161,17 +176,17 @@ export default function SettingsScreen() {
 
         {status === 'paused' && (
           <View style={styles.aiBody}>
-            <View style={[styles.progressTrack, { backgroundColor: C.surfaceAlt }]}>
+            <View style={[styles.progressTrack, { backgroundColor: C.surface }]}>
               <View style={[styles.progressFill, { backgroundColor: C.warning, width: `${progressPct}%` }]} />
             </View>
             <Text style={[styles.progressBytes, { color: C.textMuted }]}>{formatBytes(downloadedBytes)} / {formatBytes(APP_CONFIG.modelExpectedSizeMb * 1024 * 1024)}</Text>
             <View style={styles.actionRow}>
               <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: C.primary }]} onPress={aiModel.resumeDownload}>
-                <Ionicons name="play" size={14} color="#FFF" />
-                <Text style={styles.primaryBtnText}>Resume</Text>
+                <Ionicons name="play" size={12} color={isDark ? '#051424' : '#FFF'} />
+                <Text style={[styles.primaryBtnText, { color: isDark ? '#051424' : '#FFF' }]}>Resume</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.smallBtn, { backgroundColor: C.dangerLight, borderColor: C.danger + '30' }]} onPress={aiModel.cancelDownload}>
-                <Ionicons name="close" size={14} color={C.danger} />
+                <Ionicons name="close" size={12} color={C.danger} />
                 <Text style={[styles.smallBtnText, { color: C.danger }]}>Cancel</Text>
               </TouchableOpacity>
             </View>
@@ -200,11 +215,11 @@ export default function SettingsScreen() {
             </View>
             <View style={styles.actionRow}>
               <TouchableOpacity style={[styles.smallBtn, { backgroundColor: C.dangerLight, borderColor: C.danger + '30' }]} onPress={handleDeleteModel}>
-                <Ionicons name="trash-outline" size={14} color={C.danger} />
+                <Ionicons name="trash-outline" size={12} color={C.danger} />
                 <Text style={[styles.smallBtnText, { color: C.danger }]}>Delete</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.smallBtn, { backgroundColor: C.surfaceAlt, borderColor: C.border }]} onPress={() => { aiModel.deleteModel().then(() => setDownloadConfirmVisible(true)); }}>
-                <Ionicons name="refresh" size={14} color={C.text} />
+              <TouchableOpacity style={[styles.smallBtn, { backgroundColor: isDark ? C.surface : '#FFF', borderColor: isDark ? C.border : 'rgba(0,0,0,0.06)' }]} onPress={() => { aiModel.deleteModel().then(() => setDownloadConfirmVisible(true)); }}>
+                <Ionicons name="refresh" size={12} color={C.text} />
                 <Text style={[styles.smallBtnText, { color: C.text }]}>Re-download</Text>
               </TouchableOpacity>
             </View>
@@ -215,13 +230,13 @@ export default function SettingsScreen() {
           <View style={styles.aiBody}>
             {errorMessage && (
               <View style={[styles.errorBox, { backgroundColor: C.dangerLight, borderColor: C.danger + '30' }]}>
-                <Ionicons name="alert-circle" size={14} color={C.danger} />
+                <Ionicons name="alert-circle" size={12} color={C.danger} />
                 <Text style={[styles.errorText, { color: C.danger }]} numberOfLines={2}>{errorMessage}</Text>
               </View>
             )}
             <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: C.primary }]} onPress={() => { aiModel.cancelDownload(); setDownloadConfirmVisible(true); }}>
-              <Ionicons name="refresh" size={14} color="#FFF" />
-              <Text style={styles.primaryBtnText}>Retry</Text>
+              <Ionicons name="refresh" size={12} color={isDark ? '#051424' : '#FFF'} />
+              <Text style={[styles.primaryBtnText, { color: isDark ? '#051424' : '#FFF' }]}>Retry</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -231,9 +246,9 @@ export default function SettingsScreen() {
             <Text style={[styles.aiDesc, { color: C.textSecondary }]}>
               Optional on-device AI for natural summaries. Not needed for core features.
             </Text>
-            <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: C.primary }]} onPress={() => setDownloadConfirmVisible(true)}>
-              <Ionicons name="download-outline" size={16} color="#FFF" />
-              <Text style={styles.primaryBtnText}>Download (~{APP_CONFIG.modelExpectedSizeMb} MB)</Text>
+            <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: C.primaryDark }]} onPress={() => setDownloadConfirmVisible(true)}>
+              <Ionicons name="download-outline" size={14} color="#FFF" />
+              <Text style={[styles.primaryBtnText, { color: '#FFF', fontWeight: '700' }]}>Download (~{APP_CONFIG.modelExpectedSizeMb} MB)</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -244,70 +259,126 @@ export default function SettingsScreen() {
   return (
     <View style={[styles.root, { backgroundColor: C.bg }]}>
       <SafeAreaView edges={['top']} style={styles.safe}>
-        <View style={[styles.header, { borderBottomColor: C.border }]}>
-          <TouchableOpacity style={styles.backBtn} onPress={handleBack}>
-            <Ionicons name="close" size={22} color={C.text} />
-          </TouchableOpacity>
-          <Text style={[styles.headerTitle, { color: C.text }]}>Settings</Text>
-          <View style={{ width: 44 }} />
+        {/* Centered Tab Header - No back buttons */}
+        <View style={styles.header}>
+          <View style={{ width: 22 }} />
+          <Text style={[styles.headerTitle, { color: C.text }]}>Settings & Identity</Text>
+          <View style={{ width: 22 }} />
         </View>
 
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-          <Text style={[styles.sectionLabel, { color: C.textMuted }]}>AI Enhancement</Text>
-          {renderAI()}
-
-          <Text style={[styles.sectionLabel, { color: C.textMuted }]}>Appearance</Text>
-          <View style={[styles.card, { backgroundColor: C.card, borderColor: C.border }]}>
-            <View style={[styles.segmented, { backgroundColor: C.surfaceAlt, borderColor: C.border }]}>
-              {(['light', 'dark', 'system'] as const).map((t) => {
-                const active = theme === t;
-                return (
-                  <TouchableOpacity
-                    key={t}
-                    style={[styles.segmentPill, active && { backgroundColor: C.primary }]}
-                    onPress={() => setTheme(t)}
-                  >
-                    <Ionicons name={t === 'light' ? 'sunny' : t === 'dark' ? 'moon' : 'phone-portrait'} size={13} color={active ? '#FFF' : C.textSecondary} />
-                    <Text style={[styles.segmentLabel, { color: active ? '#FFF' : C.textSecondary }]}>
-                      {t.charAt(0).toUpperCase() + t.slice(1)}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </View>
-
-          <Text style={[styles.sectionLabel, { color: C.textMuted }]}>Search</Text>
-          <View style={[styles.card, { backgroundColor: C.card, borderColor: C.border }]}>
-            <View style={styles.sliderHeader}>
-              <Text style={[styles.cardLabel, { color: C.textSecondary }]}>Scrape Limit</Text>
-              <View style={[styles.chip, { backgroundColor: C.primaryLight }]}>
-                <Text style={[styles.chipText, { color: C.primary }]}>{maxDomainsToScrape}</Text>
-              </View>
-            </View>
-
-            <View ref={sliderRef} style={styles.sliderContainer} onLayout={handleSliderLayout} {...panResponder.panHandlers}>
-              <View style={[styles.sliderTrackBg, { backgroundColor: C.surfaceAlt }]}>
-                <View style={[styles.sliderTrackFill, { backgroundColor: C.primary, width: `${sliderFillPct}%` }]} />
-                <View style={[styles.sliderThumb, { backgroundColor: C.card, borderColor: C.primary, left: `${sliderFillPct}%` }]} />
-              </View>
-            </View>
-
-            <View style={styles.rangeLabels}>
-              <Text style={[styles.rangeText, { color: C.textMuted }]}>10</Text>
-              <Text style={[styles.rangeText, { color: C.textMuted }]}>50</Text>
-            </View>
-
-            <Text style={[styles.sliderDesc, { color: C.textSecondary }]}>
-              More domains = higher accuracy but longer research time.
+          
+          {/* Hero Header */}
+          <View style={styles.heroHeader}>
+            <Text style={[styles.heroDesc, { color: C.textSecondary }]}>
+              Customize your Lumina experience. Manage your presence, performance, and environment.
             </Text>
           </View>
 
-          <Text style={[styles.sectionLabel, { color: C.textMuted }]}>System</Text>
-          <View style={[styles.card, { backgroundColor: C.card, borderColor: C.border }]}>
-            <Text style={[styles.cardDesc, { color: C.textSecondary }]}>
-              Configure battery settings for uninterrupted background research.
-            </Text>
+          {/* Section: Personalization */}
+          <View style={[styles.glassCard, { backgroundColor: isDark ? 'rgba(18, 33, 49, 0.4)' : C.card, borderColor: isDark ? C.border : 'transparent' }]}>
+            <View style={styles.sectionTitleRow}>
+              <Ionicons name="color-palette-outline" size={18} color={C.primary} />
+              <Text style={[styles.sectionTitle, { color: C.text }]}>Personalization</Text>
+            </View>
+
+            <View style={styles.settingItem}>
+              <Text style={[styles.settingLabel, { color: C.textSecondary }]}>Visual Theme</Text>
+              <Text style={[styles.settingSubText, { color: C.textMuted }]}>Choose your atmospheric mode</Text>
+              
+              <View style={styles.themeGrid}>
+                <TouchableOpacity
+                  style={[styles.themeOption, theme === 'dark' && { borderColor: C.primary, borderWidth: 2 }]}
+                  onPress={() => setTheme('dark')}
+                >
+                  <View style={[styles.themePreview, { backgroundColor: '#051424' }]} />
+                  <Text style={[styles.themeText, { color: theme === 'dark' ? C.primary : C.text }]}>Midnight</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.themeOption, theme === 'light' && { borderColor: C.primary, borderWidth: 2 }]}
+                  onPress={() => setTheme('light')}
+                >
+                  <View style={[styles.themePreview, { backgroundColor: '#f9f9f9', borderColor: '#e2e8f0', borderWidth: 1 }]} />
+                  <Text style={[styles.themeText, { color: theme === 'light' ? C.primary : C.text }]}>Crystal</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.themeOption, theme === 'system' && { borderColor: C.primary, borderWidth: 2 }]}
+                  onPress={() => setTheme('system')}
+                >
+                  <View style={[styles.themePreview, { flexDirection: 'row', overflow: 'hidden' }]}>
+                    <View style={{ flex: 1, backgroundColor: '#051424' }} />
+                    <View style={{ flex: 1, backgroundColor: '#f9f9f9' }} />
+                  </View>
+                  <Text style={[styles.themeText, { color: theme === 'system' ? C.primary : C.text }]}>Space</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* Brand Highlights */}
+            <View style={styles.settingItem}>
+              <Text style={[styles.settingLabel, { color: C.textSecondary }]}>Brand Highlights</Text>
+              <View style={styles.colorRow}>
+                {['indigo', 'blue', 'pink', 'emerald', 'amber'].map((color) => {
+                  const colors: Record<string, string> = {
+                    indigo: C.primaryDark,
+                    blue: C.accent,
+                    pink: C.warning,
+                    emerald: '#34D399',
+                    amber: '#FBBF24',
+                  };
+                  const active = selectedHighlight === color;
+                  return (
+                    <TouchableOpacity
+                      key={color}
+                      style={[styles.colorCircle, { backgroundColor: colors[color], borderColor: active ? C.text : 'transparent' }]}
+                      onPress={() => setSelectedHighlight(color)}
+                    />
+                  );
+                })}
+              </View>
+            </View>
+          </View>
+
+
+
+          {/* Section: AI Enhancement & Scrape Limit */}
+          <View style={[styles.glassCard, { backgroundColor: isDark ? 'rgba(18, 33, 49, 0.4)' : C.card, borderColor: isDark ? C.border : 'transparent' }]}>
+            <View style={styles.sectionTitleRow}>
+              <Ionicons name="sparkles-outline" size={18} color={C.primary} />
+              <Text style={[styles.sectionTitle, { color: C.text }]}>AI & Search Settings</Text>
+            </View>
+
+            <View style={styles.sliderSection}>
+              <View style={styles.sliderHeader}>
+                <Text style={[styles.sliderLabel, { color: C.textSecondary }]}>Scrape Domain Limit</Text>
+                <View style={[styles.chip, { backgroundColor: C.primaryLight }]}>
+                  <Text style={[styles.chipText, { color: C.primary }]}>{maxDomainsToScrape}</Text>
+                </View>
+              </View>
+
+              <View ref={sliderRef} style={styles.sliderContainer} onLayout={handleSliderLayout} {...panResponder.panHandlers}>
+                <View style={[styles.sliderTrackBg, { backgroundColor: C.surface }]}>
+                  <View style={[styles.sliderTrackFill, { backgroundColor: C.primary, width: `${sliderFillPct}%` }]} />
+                  <View style={[styles.sliderThumb, { backgroundColor: C.surfaceAlt, borderColor: C.primary, left: `${sliderFillPct}%` }]} />
+                </View>
+              </View>
+
+              <View style={styles.rangeLabels}>
+                <Text style={[styles.rangeText, { color: C.textMuted }]}>10</Text>
+                <Text style={[styles.rangeText, { color: C.textMuted }]}>50</Text>
+              </View>
+            </View>
+
+            {renderAI()}
+          </View>
+
+          {/* Section: Support & Native Systems */}
+          <View style={[styles.glassCard, { backgroundColor: isDark ? 'rgba(18, 33, 49, 0.4)' : C.card, borderColor: isDark ? C.border : 'transparent' }]}>
+            <View style={styles.sectionTitleRow}>
+              <Ionicons name="settings-outline" size={18} color={C.textSecondary} />
+              <Text style={[styles.sectionTitle, { color: C.text }]}>System & Support</Text>
+            </View>
+
             <TouchableOpacity style={[styles.linkRow, { borderBottomColor: C.border }]} onPress={handleOpenBatterySettings}>
               <View style={[styles.linkIcon, { backgroundColor: C.warningLight }]}>
                 <Ionicons name="battery-charging" size={16} color={C.warning} />
@@ -315,17 +386,15 @@ export default function SettingsScreen() {
               <Text style={[styles.linkLabel, { color: C.text }]}>Battery Optimization</Text>
               <Ionicons name="chevron-forward" size={16} color={C.textMuted} />
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.linkRow, { borderBottomWidth: 0 }]} onPress={handleOpenAppInfo}>
+
+            <TouchableOpacity style={[styles.linkRow, { borderBottomColor: C.border }]} onPress={handleOpenAppInfo}>
               <View style={[styles.linkIcon, { backgroundColor: C.primaryLight }]}>
                 <Ionicons name="settings-outline" size={16} color={C.primary} />
               </View>
               <Text style={[styles.linkLabel, { color: C.text }]}>Background Activity</Text>
               <Ionicons name="chevron-forward" size={16} color={C.textMuted} />
             </TouchableOpacity>
-          </View>
 
-          <Text style={[styles.sectionLabel, { color: C.textMuted }]}>Support</Text>
-          <View style={[styles.card, { backgroundColor: C.card, borderColor: C.border }]}>
             <TouchableOpacity style={[styles.linkRow, { borderBottomColor: C.border }]} onPress={handleShare}>
               <View style={[styles.linkIcon, { backgroundColor: C.primaryLight }]}>
                 <Ionicons name="share-outline" size={16} color={C.primary} />
@@ -333,6 +402,7 @@ export default function SettingsScreen() {
               <Text style={[styles.linkLabel, { color: C.text }]}>Share App</Text>
               <Ionicons name="chevron-forward" size={16} color={C.textMuted} />
             </TouchableOpacity>
+
             <TouchableOpacity style={[styles.linkRow, { borderBottomWidth: 0 }]} onPress={handleCopyUPI}>
               <View style={[styles.linkIcon, { backgroundColor: C.warningLight }]}>
                 <Ionicons name="heart-outline" size={16} color={C.warning} />
@@ -347,7 +417,14 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </View>
 
-          <View style={{ height: Spacing.xxxl }} />
+          {/* Logout Action Area */}
+          <View style={styles.logoutWrap}>
+            <TouchableOpacity style={[styles.logoutBtn, { borderColor: C.danger }]} onPress={handleLogout}>
+              <Ionicons name="log-out-outline" size={18} color={C.danger} />
+              <Text style={[styles.logoutBtnText, { color: C.danger }]}>Logout from HireScope</Text>
+            </TouchableOpacity>
+          </View>
+
         </ScrollView>
 
         <Modal visible={downloadConfirmVisible} transparent animationType="fade" onRequestClose={() => setDownloadConfirmVisible(false)}>
@@ -388,24 +465,177 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   safe: { flex: 1 },
   header: {
-    flexDirection: 'row', alignItems: 'center', paddingHorizontal: Spacing.lg,
-    paddingVertical: Spacing.md, borderBottomWidth: StyleSheet.hairlineWidth,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
   },
-  backBtn: { width: 44, height: 44, borderRadius: Radius.md, justifyContent: 'center', alignItems: 'center' },
-  headerTitle: { flex: 1, fontSize: 17, fontWeight: '700', textAlign: 'center' },
-  scroll: { paddingHorizontal: Spacing.xl, paddingTop: Spacing.xl },
-  sectionLabel: {
-    fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8,
-    marginBottom: Spacing.md, marginTop: Spacing.xl, paddingLeft: Spacing.xs,
+  headerTitle: { fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'center' },
+  scroll: { paddingHorizontal: Spacing.lg, paddingTop: Spacing.md, paddingBottom: Spacing.massive },
+  heroHeader: {
+    marginVertical: Spacing.sm,
+    paddingHorizontal: Spacing.xs,
   },
-  card: { borderRadius: Radius.xl, padding: Spacing.xl, borderWidth: StyleSheet.hairlineWidth, marginBottom: Spacing.sm },
-  cardLabel: { fontSize: 13, fontWeight: '600', marginBottom: Spacing.xs },
-  cardDesc: { fontSize: 12, lineHeight: 18, marginBottom: Spacing.md },
+  heroDesc: {
+    fontSize: 13,
+    lineHeight: 18,
+    textAlign: 'center',
+    marginBottom: Spacing.lg,
+  },
+  glassCard: {
+    borderRadius: 24,
+    borderWidth: 1,
+    padding: Spacing.lg,
+    marginBottom: Spacing.md,
+  },
+  sectionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: Spacing.xl,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  settingItem: {
+    marginBottom: Spacing.lg,
+  },
+  settingLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginBottom: 4,
+  },
+  settingSubText: {
+    fontSize: 11,
+    marginBottom: Spacing.md,
+  },
+  themeGrid: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  themeOption: {
+    flex: 1,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.05)',
+    backgroundColor: 'rgba(255,255,255,0.02)',
+    padding: 8,
+    alignItems: 'center',
+    gap: 8,
+  },
+  themePreview: {
+    width: '100%',
+    height: 48,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.05)',
+  },
+  themeText: {
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  colorRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: Spacing.xs,
+  },
+  colorCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 2.5,
+  },
+  switchRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: Spacing.md,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255,0.03)',
+  },
+  switchText: {
+    flex: 1,
+    marginRight: Spacing.md,
+  },
+  switchLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  switchSub: {
+    fontSize: 11,
+    marginTop: 2,
+  },
+  tipBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    padding: Spacing.md,
+    borderRadius: 16,
+    marginTop: Spacing.md,
+  },
+  tipText: {
+    fontSize: 11,
+    fontWeight: '600',
+    flex: 1,
+  },
+  healthCard: {
+    borderRadius: 16,
+    padding: Spacing.md,
+    marginTop: Spacing.md,
+  },
+  healthHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: Spacing.sm,
+  },
+  healthLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+  },
+  healthVal: {
+    fontSize: 11,
+    fontWeight: '700',
+  },
+  healthProgressTrack: {
+    height: 6,
+    borderRadius: 3,
+    overflow: 'hidden',
+  },
+  healthProgressFill: {
+    height: '100%',
+    borderRadius: 3,
+  },
+  sliderSection: {
+    marginBottom: Spacing.lg,
+  },
+  sliderLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+  },
+  sliderHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: Spacing.md },
+  chip: { paddingHorizontal: Spacing.sm, paddingVertical: 3, borderRadius: Radius.full },
+  chipText: { fontSize: 12, fontWeight: '700' },
+  sliderContainer: { height: 32, justifyContent: 'center' },
+  sliderTrackBg: { height: 5, borderRadius: Radius.full, position: 'relative', justifyContent: 'center' },
+  sliderTrackFill: { height: '100%', borderRadius: Radius.full },
+  sliderThumb: { position: 'absolute', width: 20, height: 20, borderRadius: 10, borderWidth: 3, marginLeft: -10 },
+  rangeLabels: { flexDirection: 'row', justifyContent: 'space-between', marginTop: Spacing.xs },
+  rangeText: { fontSize: 10, fontWeight: '500' },
+  aiCard: {
+    borderRadius: 16,
+    padding: Spacing.md,
+    borderWidth: 1,
+    marginTop: Spacing.md,
+  },
   aiHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: Spacing.md },
-  aiIcon: { width: 40, height: 40, borderRadius: Radius.md, justifyContent: 'center', alignItems: 'center', marginRight: Spacing.md },
-  aiHeaderText: { flex: 1 },
-  aiName: { fontSize: 15, fontWeight: '700' },
-  statusPill: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: Spacing.sm, paddingVertical: 2, borderRadius: Radius.full, marginTop: 3, alignSelf: 'flex-start', gap: 3 },
+  aiIcon: { width: 34, height: 34, borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginRight: Spacing.md },
+  aiHeaderText: { flex: 1, flexDirection: 'column', alignItems: 'flex-start', gap: 4 },
+  aiName: { fontSize: 14, fontWeight: '700' },
+  statusPill: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: Spacing.sm, paddingVertical: 2, borderRadius: Radius.full, gap: 3 },
   statusDot: { width: 5, height: 5, borderRadius: 2.5 },
   statusPillText: { fontSize: 10, fontWeight: '700' },
   aiBody: { marginTop: Spacing.xs },
@@ -422,39 +652,44 @@ const styles = StyleSheet.create({
   metaValue: { fontSize: 13, fontWeight: '600' },
   aiDesc: { fontSize: 12, lineHeight: 18, marginBottom: Spacing.md },
   actionRow: { flexDirection: 'row', gap: Spacing.sm, marginTop: Spacing.sm },
-  smallBtn: { flex: 1, borderRadius: Radius.md, borderWidth: StyleSheet.hairlineWidth, paddingVertical: 10, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 4 },
+  smallBtn: { flex: 1, borderRadius: Radius.md, borderWidth: 1, paddingVertical: 10, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 4 },
   smallBtnText: { fontSize: 13, fontWeight: '600' },
   primaryBtn: { flex: 1, borderRadius: Radius.md, paddingVertical: 10, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 4 },
-  primaryBtnText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700' },
+  primaryBtnText: { color: '#080716', fontSize: 13, fontWeight: '700' },
   errorBox: { flexDirection: 'row', alignItems: 'center', padding: Spacing.md, borderRadius: Radius.md, borderWidth: 1, marginBottom: Spacing.md, gap: Spacing.sm },
   errorText: { fontSize: 12, flex: 1 },
-  segmented: { flexDirection: 'row', borderRadius: Radius.md, borderWidth: StyleSheet.hairlineWidth, padding: 2, gap: 2 },
-  segmentPill: { flex: 1, borderRadius: 12, paddingVertical: 9, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 3 },
-  segmentLabel: { fontSize: 11, fontWeight: '600' },
-  sliderHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: Spacing.md },
-  chip: { paddingHorizontal: Spacing.sm, paddingVertical: 3, borderRadius: Radius.full },
-  chipText: { fontSize: 12, fontWeight: '700' },
-  sliderContainer: { height: 32, justifyContent: 'center' },
-  sliderTrackBg: { height: 5, borderRadius: Radius.full, position: 'relative', justifyContent: 'center' },
-  sliderTrackFill: { height: '100%', borderRadius: Radius.full },
-  sliderThumb: { position: 'absolute', width: 20, height: 20, borderRadius: 10, borderWidth: 3, marginLeft: -10 },
-  rangeLabels: { flexDirection: 'row', justifyContent: 'space-between', marginTop: Spacing.xs },
-  rangeText: { fontSize: 10, fontWeight: '500' },
-  sliderDesc: { fontSize: 11, lineHeight: 16, marginTop: Spacing.sm },
-  linkRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: Spacing.md, borderBottomWidth: StyleSheet.hairlineWidth, gap: Spacing.md },
+  linkRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: Spacing.md, borderBottomWidth: 1, gap: Spacing.md },
   linkIcon: { width: 32, height: 32, borderRadius: Radius.sm, justifyContent: 'center', alignItems: 'center' },
   linkLabel: { flex: 1, fontSize: 13, fontWeight: '600' },
   linkSub: { fontSize: 11, marginTop: 1 },
   copyBtn: { paddingHorizontal: Spacing.md, paddingVertical: 5, borderRadius: Radius.full },
   copyBtnText: { color: '#FFFFFF', fontSize: 11, fontWeight: '700' },
   overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
-  confirmModal: { borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, width: '86%', padding: Spacing.xl },
+  confirmModal: { borderRadius: 20, borderWidth: 1, width: '86%', padding: Spacing.xl },
   confirmIcon: { width: 48, height: 48, borderRadius: 24, justifyContent: 'center', alignItems: 'center', alignSelf: 'center', marginBottom: Spacing.md },
   confirmTitle: { fontSize: 18, fontWeight: '800', textAlign: 'center', marginBottom: Spacing.lg },
-  confirmDetails: { borderRadius: Radius.md, borderWidth: StyleSheet.hairlineWidth, padding: Spacing.md, marginBottom: Spacing.md },
+  confirmDetails: { borderRadius: Radius.md, borderWidth: 1, padding: Spacing.md, marginBottom: Spacing.md },
   confirmRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 4 },
-  confirmDivider: { height: StyleSheet.hairlineWidth, marginVertical: 2 },
+  confirmDivider: { height: 1, marginVertical: 2 },
   confirmKey: { fontSize: 12 },
   confirmValue: { fontSize: 12, fontWeight: '700' },
   confirmActions: { flexDirection: 'row', gap: Spacing.sm, marginTop: Spacing.md },
+  logoutWrap: {
+    marginVertical: Spacing.lg,
+    alignItems: 'center',
+  },
+  logoutBtn: {
+    width: '100%',
+    height: 52,
+    borderRadius: 9999,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  logoutBtnText: {
+    fontSize: 13,
+    fontWeight: '700',
+  },
 });

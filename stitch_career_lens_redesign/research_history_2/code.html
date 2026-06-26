@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireScope - Recent Research</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-card {
+      background: rgba(18, 33, 49, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(65, 71, 84, 0.4);
+    }
+    .active-glow {
+      box-shadow: 0 0 15px rgba(170, 199, 255, 0.1);
+    }
+    .progress-shimmer {
+      background: linear-gradient(90deg, #aac7ff 0%, #3e90ff 50%, #aac7ff 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite linear;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    body {
+      background-color: #051424;
+      color: #d4e4fa;
+      font-family: 'Inter', sans-serif;
+    }
+    .font-headline-md { font-family: 'Outfit', sans-serif; }
+    .font-label-caps { font-family: 'Outfit', sans-serif; text-transform: uppercase; }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#dfe1f5",
+            "primary-container": "#3e90ff",
+            "on-error-container": "#ffdad6",
+            "tertiary": "#b9c3ff",
+            "surface-container": "#122131",
+            "error": "#ffb4ab",
+            "surface-variant": "#273647",
+            "secondary": "#c3c5d8",
+            "secondary-fixed-dim": "#c3c5d8",
+            "primary-fixed": "#d6e3ff",
+            "surface-container-low": "#0d1c2d",
+            "surface-container-lowest": "#010f1f",
+            "surface-bright": "#2c3a4c",
+            "surface": "#051424",
+            "on-background": "#d4e4fa",
+            "on-primary-fixed": "#001b3e",
+            "on-primary-fixed-variant": "#00468d",
+            "on-error": "#690005",
+            "surface-container-highest": "#273647",
+            "surface-tint": "#aac7ff",
+            "on-secondary": "#2c303e",
+            "error-container": "#93000a",
+            "on-tertiary": "#00228a",
+            "primary": "#aac7ff",
+            "surface-dim": "#051424",
+            "tertiary-fixed-dim": "#b9c3ff",
+            "on-tertiary-fixed-variant": "#0033c1",
+            "on-secondary-container": "#b5b7ca",
+            "on-primary": "#003064",
+            "surface-container-high": "#1c2b3c",
+            "on-tertiary-container": "#001d7a",
+            "on-secondary-fixed": "#171b29",
+            "background": "#051424",
+            "outline": "#8b91a0",
+            "on-surface": "#d4e4fa",
+            "inverse-surface": "#d4e4fa",
+            "on-surface-variant": "#c0c6d6",
+            "on-secondary-fixed-variant": "#424655",
+            "inverse-primary": "#005db8",
+            "on-tertiary-fixed": "#001257",
+            "secondary-container": "#454858",
+            "tertiary-container": "#6f88ff",
+            "on-primary-container": "#002957",
+            "tertiary-fixed": "#dde1ff",
+            "outline-variant": "#414754",
+            "primary-fixed-dim": "#aac7ff",
+            "inverse-on-surface": "#233143"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "xl": "32px",
+            "gutter": "16px",
+            "md": "16px",
+            "sm": "8px",
+            "lg": "24px",
+            "base": "4px",
+            "max-width": "480px",
+            "margin-mobile": "16px",
+            "xs": "4px"
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/40">
+<div class="flex justify-between items-center h-16 px-md w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">search</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">HireScope</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a recruitment specialist in a modern, glass-walled office environment. The lighting is soft and blue-toned, matching the premium HireScope tech aesthetic. The person is smiling confidently, dressed in professional business attire, with a soft-focus background of digital data screens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo2VF2hp7kSRFebse78jfF6RvY0VJ-3SHiAn_2T8odyD7Laq75aEWs0PCAPOBnFkYLjqDH2CncPv_G99pJfUVH_Q2HgLUAeSkGQtK6tq1NSNSvunSQGoCOVGg1dtIVp3yvDmJWMzwMUccc5B_SPbgI8nP7vFke5h0M5CJ9EhVDliAvWRKGu-8obCLNFmu2b2R6WKbAQxK6JgRwYgborWh4XU0SpcJQKdFQZr5m4Lzav8EI63BfE5CJ-3mR9UJt9HqHx5SAH9Lv3J8"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 px-gutter max-w-max-width mx-auto">
+<header class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-background font-bold">Recent Research</h2>
+<p class="text-on-surface-variant text-body-base mt-base">Tracking your active and past talent deep-dives.</p>
+</header>
+<!-- Active Research Section -->
+<section class="space-y-md mb-xl">
+<div class="flex items-center justify-between">
+<h3 class="font-label-caps text-label-caps text-primary tracking-widest">Active Processing</h3>
+<span class="px-sm py-1 bg-primary-container/10 border border-primary/20 rounded-full text-[10px] font-bold text-primary uppercase">2 Running</span>
+</div>
+<!-- Active Card 1 -->
+<div class="glass-card active-glow rounded-xl p-lg relative overflow-hidden transition-all duration-300">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h4 class="font-body-bold text-body-base text-on-surface">Senior Machine Learning Engineer</h4>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> San Francisco, CA
+            </p>
+</div>
+<button class="text-error font-label-caps text-[10px] bg-error-container/10 border border-error/20 px-sm py-1 rounded hover:bg-error-container/20 transition-colors active:scale-95 duration-150">
+            Cancel
+          </button>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span>Analyzing Talent Pool...</span>
+<span>65%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-[65%] progress-shimmer rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Active Card 2 -->
+<div class="glass-card active-glow rounded-xl p-lg relative overflow-hidden transition-all duration-300">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h4 class="font-body-bold text-body-base text-on-surface">Director of Product Design</h4>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Remote / New York
+            </p>
+</div>
+<button class="text-error font-label-caps text-[10px] bg-error-container/10 border border-error/20 px-sm py-1 rounded hover:bg-error-container/20 transition-colors active:scale-95 duration-150">
+            Cancel
+          </button>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span>Fetching Salary Benchmarks...</span>
+<span>22%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-[22%] progress-shimmer rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Completed Research Section -->
+<section class="space-y-md">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant tracking-widest">Completed Insights</h3>
+<!-- Completed Card 1 -->
+<div class="glass-card rounded-xl p-md flex items-center gap-md hover:bg-surface-variant/30 transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/30 flex items-center justify-center border border-outline-variant/30 group-hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-bold text-body-base text-on-surface">Principal Cloud Architect</h4>
+<span class="text-[10px] text-on-surface-variant font-label-caps">2 hours ago</span>
+</div>
+<div class="flex items-center gap-md mt-xs">
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">location_on</span> Seattle, WA
+            </span>
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">groups</span> 142 Profiles
+            </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<!-- Completed Card 2 -->
+<div class="glass-card rounded-xl p-md flex items-center gap-md hover:bg-surface-variant/30 transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/30 flex items-center justify-center border border-outline-variant/30 group-hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-bold text-body-base text-on-surface">Data Scientist (L5)</h4>
+<span class="text-[10px] text-on-surface-variant font-label-caps">Yesterday</span>
+</div>
+<div class="flex items-center gap-md mt-xs">
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">location_on</span> Austin, TX
+            </span>
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">calendar_month</span> Sep 2023
+            </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<!-- Completed Card 3 -->
+<div class="glass-card rounded-xl p-md flex items-center gap-md hover:bg-surface-variant/30 transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/30 flex items-center justify-center border border-outline-variant/30 group-hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary">business</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-bold text-body-base text-on-surface">VP of Engineering</h4>
+<span class="text-[10px] text-on-surface-variant font-label-caps">3 days ago</span>
+</div>
+<div class="flex items-center gap-md mt-xs">
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">location_on</span> London, UK
+            </span>
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> Growth Model
+            </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+</section>
+<!-- Example of Empty State (Hidden by default for this view but coded) -->
+<div class="hidden flex flex-col items-center justify-center py-24 text-center" id="empty-state">
+<div class="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center mb-md border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-[40px]">history_off</span>
+</div>
+<h3 class="font-headline-md text-on-background font-bold">No search history yet.</h3>
+<p class="text-on-surface-variant mt-sm max-w-[240px] text-sm">Start your first research lens to see market trends and insights here.</p>
+<button class="mt-lg px-xl py-md bg-primary text-on-primary font-bold rounded-lg active:scale-95 transition-transform">
+        Start New Research
+      </button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container/70 dark:bg-surface-container/70 backdrop-blur-[30px] border-t border-outline-variant/40 shadow-lg md:hidden">
+<div class="flex justify-around items-center h-20 px-gutter w-full max-w-max-width mx-auto pb-safe">
+<!-- Search (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<!-- History (Active) -->
+<a class="flex flex-col items-center justify-center text-primary relative after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 after:shadow-[0_0_8px_rgba(170,199,255,0.8)] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-caps text-label-caps mt-1">History</span>
+</a>
+<!-- Settings (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps mt-1">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Visual Atmospheric Background -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-30">
+<div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute top-[40%] -right-[10%] w-[40%] h-[60%] bg-tertiary-container/10 blur-[150px] rounded-full"></div>
+</div>
+<script>
+    // Micro-interaction for research cards
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('click', () => {
+        // Mock feedback
+        console.log('Research details loading...');
+      });
+    });
+
+    // Toggle empty state if needed (Simulation)
+    const toggleEmptyState = (show) => {
+      const mainContent = document.querySelector('main > section');
+      const emptyState = document.getElementById('empty-state');
+      if (show) {
+        mainContent.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+      } else {
+        mainContent.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+      }
+    };
+  </script>
+</body></html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>HireScope - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dfe1f5",
+                    "primary-container": "#3e90ff",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#b9c3ff",
+                    "surface-container": "#122131",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#273647",
+                    "secondary": "#c3c5d8",
+                    "secondary-fixed-dim": "#c3c5d8",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container-low": "#0d1c2d",
+                    "surface-container-lowest": "#010f1f",
+                    "surface-bright": "#2c3a4c",
+                    "surface": "#051424",
+                    "on-background": "#d4e4fa",
+                    "on-primary-fixed": "#001b3e",
+                    "on-primary-fixed-variant": "#00468d",
+                    "on-error": "#690005",
+                    "surface-container-highest": "#273647",
+                    "surface-tint": "#aac7ff",
+                    "on-secondary": "#2c303e",
+                    "error-container": "#93000a",
+                    "on-tertiary": "#00228a",
+                    "primary": "#aac7ff",
+                    "surface-dim": "#051424",
+                    "tertiary-fixed-dim": "#b9c3ff",
+                    "on-tertiary-fixed-variant": "#0033c1",
+                    "on-secondary-container": "#b5b7ca",
+                    "on-primary": "#003064",
+                    "surface-container-high": "#1c2b3c",
+                    "on-tertiary-container": "#001d7a",
+                    "on-secondary-fixed": "#171b29",
+                    "background": "#051424",
+                    "outline": "#8b91a0",
+                    "on-surface": "#d4e4fa",
+                    "inverse-surface": "#d4e4fa",
+                    "on-surface-variant": "#c0c6d6",
+                    "on-secondary-fixed-variant": "#424655",
+                    "inverse-primary": "#005db8",
+                    "on-tertiary-fixed": "#001257",
+                    "secondary-container": "#454858",
+                    "tertiary-container": "#6f88ff",
+                    "on-primary-container": "#002957",
+                    "tertiary-fixed": "#dde1ff",
+                    "outline-variant": "#414754",
+                    "primary-fixed-dim": "#aac7ff",
+                    "inverse-on-surface": "#233143"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "gutter": "16px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "max-width": "480px",
+                    "margin-mobile": "16px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Outfit"],
+                    "body-base": ["Inter"],
+                    "body-bold": ["Inter"],
+                    "display-lg": ["Outfit"],
+                    "headline-md": ["Outfit"],
+                    "stat-lg": ["Outfit"],
+                    "headline-lg-mobile": ["Outfit"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "body-bold": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "stat-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #051424;
+            color: #d4e4fa;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .lens-card {
+            background: rgba(18, 33, 49, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 145, 160, 0.4);
+        }
+        .glass-nav {
+            background: rgba(18, 33, 49, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-dot::after {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background-color: #aac7ff;
+            border-radius: 9999px;
+            margin-top: 4px;
+            box-shadow: 0 0 8px rgba(170, 199, 255, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-base text-body-base min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/40">
+<div class="flex justify-between items-center h-16 px-md w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary hover:bg-primary-container/10 p-2 rounded-full transition-colors active:scale-95 duration-150">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Settings</h1>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional high-resolution studio portrait of a technology executive. The person has a friendly but authoritative expression, lit with sophisticated cinematic lighting that highlights facial contours against a deep navy blue background. The aesthetic is modern, clean, and professional, perfectly fitting a high-end recruitment intelligence platform's user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUX5o6U1PxTdeL7d2qKWkHZsS1EK7M9X2GGEUVk8tQ5zMvMN3nBWi2II-mzw-kx2saanphRSo7UdOzE-XZXsKIvwhhiKvgtMiL96P2VxunrGvysOAdb_s470rtS9h_InP0aQgjK2k9ty7aPlA_PusPZRu4yynBtnk5LK5rH8zx-QCjhexPW3Hp5qSN2G4r_rbsqoexgD51MI9r6Jt-uFSUZ06nb4hP-MDFaWihr5fHcZNQlH8_oxd_cXeFnuWdPn3ZaD5pD3tqHvg"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-gutter max-w-max-width mx-auto space-y-lg">
+<!-- Theme Section -->
+<section class="space-y-sm">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant px-sm uppercase tracking-widest">Theme Preference</h2>
+<div class="lens-card rounded-xl p-base overflow-hidden">
+<div class="flex flex-col">
+<button class="flex items-center justify-between p-md hover:bg-primary-container/10 transition-colors group active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">light_mode</span>
+<span class="font-body-bold text-on-surface">Light</span>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center"></div>
+</button>
+<div class="h-[1px] bg-outline-variant/20 mx-md"></div>
+<button class="flex items-center justify-between p-md bg-primary-container/10 transition-colors group active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">dark_mode</span>
+<span class="font-body-bold text-on-surface">Dark</span>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 bg-primary rounded-full"></div>
+</div>
+</button>
+<div class="h-[1px] bg-outline-variant/20 mx-md"></div>
+<button class="flex items-center justify-between p-md hover:bg-primary-container/10 transition-colors group active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">settings_brightness</span>
+<span class="font-body-bold text-on-surface">System Default</span>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center"></div>
+</button>
+</div>
+</div>
+</section>
+<!-- Permissions Section -->
+<section class="space-y-sm">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant px-sm uppercase tracking-widest">App Permissions</h2>
+<div class="lens-card rounded-xl p-base">
+<div class="flex flex-col">
+<div class="flex items-center justify-between p-md">
+<div class="flex flex-col">
+<span class="font-body-bold text-on-surface">Notifications</span>
+<span class="text-xs text-on-surface-variant">Job alerts &amp; market updates</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="h-[1px] bg-outline-variant/20 mx-md"></div>
+<div class="flex items-center justify-between p-md">
+<div class="flex flex-col">
+<span class="font-body-bold text-on-surface">Location Services</span>
+<span class="text-xs text-on-surface-variant">Local salary insights</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Android Optimizations -->
+<section class="space-y-sm">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant px-sm uppercase tracking-widest">Android System</h2>
+<div class="grid grid-cols-1 gap-sm">
+<button class="lens-card p-md rounded-xl flex items-center justify-between hover:bg-primary-container/10 transition-all active:scale-[0.98] duration-150 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">battery_saver</span>
+<span class="font-body-bold text-on-surface">Battery Optimization</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="lens-card p-md rounded-xl flex items-center justify-between hover:bg-primary-container/10 transition-all active:scale-[0.98] duration-150 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">running_with_errors</span>
+<span class="font-body-bold text-on-surface">Background Activity</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Support Section -->
+<section class="space-y-sm">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant px-sm uppercase tracking-widest">Support &amp; Info</h2>
+<div class="lens-card rounded-xl p-base">
+<div class="flex flex-col">
+<button class="flex items-center justify-between p-md hover:bg-primary-container/10 transition-colors group active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">help</span>
+<span class="font-body-bold text-on-surface">Help Center</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">open_in_new</span>
+</button>
+<div class="h-[1px] bg-outline-variant/20 mx-md"></div>
+<button class="flex items-center justify-between p-md hover:bg-primary-container/10 transition-colors group active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">policy</span>
+<span class="font-body-bold text-on-surface">Privacy Policy</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<div class="h-[1px] bg-outline-variant/20 mx-md"></div>
+<button class="flex items-center justify-between p-md hover:bg-primary-container/10 transition-colors group active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error">logout</span>
+<span class="font-body-bold text-error">Sign Out</span>
+</div>
+</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="flex flex-col items-center justify-center py-lg opacity-40">
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tighter mb-1">HireScope</div>
+<p class="font-label-caps text-label-caps">v1.0.0</p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl glass-nav border-t border-outline-variant/40 shadow-lg">
+<div class="flex justify-around items-center h-20 px-gutter w-full max-w-max-width mx-auto pb-safe">
+<!-- Search Tab -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</button>
+<!-- History Tab -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps mt-1">History</span>
+</button>
+<!-- Settings Tab (Active) -->
+<button class="flex flex-col items-center justify-center text-primary relative after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 after:shadow-[0_0_8px_rgba(170,199,255,0.8)] active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-caps text-label-caps mt-1">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Micro-interaction for ripple or haptic-like effect on buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Subtle tactile feedback implementation if desired
+            });
+        });
+
+        // Theme toggle simulation (UI only for this prompt)
+        const themeButtons = document.querySelectorAll('[name="theme-btn"]');
+        themeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Logic to switch theme classes
+            });
+        });
+    </script>
+</body></html>

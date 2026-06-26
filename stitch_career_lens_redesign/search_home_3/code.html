@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Find a Job - Career Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap');
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#afc7ff",
+                        "surface": "#121414",
+                        "on-primary-container": "#004b1e",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-error": "#690005",
+                        "primary": "#4be277",
+                        "on-primary": "#003915",
+                        "on-secondary-container": "#ffaea8",
+                        "secondary-container": "#a40217",
+                        "on-primary-fixed-variant": "#005321",
+                        "on-background": "#e2e2e2",
+                        "tertiary-fixed": "#d8e2ff",
+                        "inverse-primary": "#006e2f",
+                        "surface-variant": "#333535",
+                        "background": "#121414",
+                        "surface-bright": "#37393a",
+                        "on-secondary-fixed": "#410004",
+                        "surface-container-highest": "#333535",
+                        "secondary": "#ffb3ad",
+                        "on-secondary": "#68000a",
+                        "secondary-fixed-dim": "#ffb3ad",
+                        "on-surface-variant": "#bccbb9",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "outline": "#869585",
+                        "on-tertiary-container": "#003d88",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#4ae176",
+                        "on-tertiary-fixed": "#001a42",
+                        "inverse-on-surface": "#2f3131",
+                        "secondary-fixed": "#ffdad7",
+                        "surface-container-high": "#282a2b",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#930013",
+                        "primary-container": "#22c55e",
+                        "on-tertiary": "#002e6a",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-container-lowest": "#0c0f0f",
+                        "on-primary-fixed": "#002109",
+                        "surface-dim": "#121414",
+                        "surface-container-low": "#1a1c1c",
+                        "tertiary-container": "#82abff",
+                        "primary-fixed": "#6bff8f",
+                        "outline-variant": "#3d4a3d",
+                        "surface-tint": "#4ae176",
+                        "error-container": "#93000a",
+                        "surface-container": "#1e2020",
+                        "on-surface": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target-min": "56px",
+                        "gutter-page": "24px",
+                        "stack-xl": "48px",
+                        "stack-lg": "32px",
+                        "inset-container": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "label-lg": ["Atkinson Hyperlegible Next"],
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "label-md": ["Atkinson Hyperlegible Next"],
+                        "headline-lg": ["Atkinson Hyperlegible Next"],
+                        "headline-lg-mobile": ["Atkinson Hyperlegible Next"],
+                        "headline-md": ["Atkinson Hyperlegible Next"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["22px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "label-lg": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "body-md": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["18px", { "lineHeight": "22px", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "0.01em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "800" }],
+                        "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg">
+<!-- TopAppBar -->
+<header class="flex items-center px-gutter-page w-full h-[80px] bg-surface-container-low shadow-sm justify-between shrink-0">
+<div class="flex items-center gap-4">
+<button aria-label="Go Back" class="w-touch-target-min h-touch-target-min flex items-center justify-center hover:bg-surface-variant active:scale-95 transition-transform duration-100 rounded-full text-on-background">
+<span class="material-symbols-outlined text-[32px]">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary uppercase tracking-tight">Career Hub</h1>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-[700px] mx-auto px-gutter-page pt-stack-lg pb-[140px] flex flex-col">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background mb-stack-lg">Find a Job</h2>
+<!-- Search Input Group -->
+<div class="mb-stack-lg flex flex-col">
+<label class="font-label-lg text-label-lg text-on-background mb-2" for="job-name-input">Job Name</label>
+<input class="w-full min-h-[64px] border-[3px] border-on-background bg-surface text-on-background font-body-lg text-body-lg px-4 focus:outline-none focus:border-[5px] focus:border-tertiary placeholder-on-surface-variant" id="job-name-input" placeholder="e.g. Manager, Driver, Clerk" type="text"/>
+</div>
+<!-- Action Button -->
+<button class="w-full min-h-[64px] bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center border-2 border-primary active:invert mb-stack-lg transition-colors">
+            Start Research
+        </button>
+<!-- Helper Text -->
+<div class="bg-surface-container-high p-inset-container border-2 border-outline-variant">
+<p class="font-body-lg text-body-lg text-on-surface">
+<strong>How to use this:</strong> Enter a job title you are interested in into the "Job Name" box above. Then, tap the green "Start Research" button to see a list of matching opportunities in your area.
+            </p>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch bg-surface h-[100px] shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+<!-- Active Tab: Search -->
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-none h-full w-full flex-1 hover:bg-surface-container-high active:invert transition-all duration-75">
+<span class="material-symbols-outlined text-[32px] mb-1" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-lg text-label-lg font-bold">Search</span>
+</button>
+<!-- Inactive Tab: History -->
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full flex-1 hover:bg-surface-container-high active:invert transition-all duration-75">
+<span class="material-symbols-outlined text-[32px] mb-1">history</span>
+<span class="font-label-lg text-label-lg font-bold">History</span>
+</button>
+<!-- Inactive Tab: Help -->
+<button class="flex flex-col items-center justify-center text-on-surface h-full w-full flex-1 hover:bg-surface-container-high active:invert transition-all duration-75">
+<span class="material-symbols-outlined text-[32px] mb-1">help</span>
+<span class="font-label-lg text-label-lg font-bold">Help</span>
+</button>
+</nav>
+<!-- Desktop SideNav (Hidden on Mobile, Visible on Desktop) - Inferred to match BottomNav for responsiveness -->
+<nav class="hidden md:flex fixed top-[80px] left-0 w-[240px] h-[calc(100vh-80px)] bg-surface-container-low border-r-2 border-outline-variant flex-col py-stack-lg z-40">
+<div class="flex flex-col gap-4 px-gutter-page">
+<button class="flex items-center gap-4 bg-primary text-on-primary min-h-[64px] px-4 rounded-lg font-label-lg text-label-lg hover:bg-primary-container active:invert transition-colors w-full text-left">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">search</span>
+                Search
+            </button>
+<button class="flex items-center gap-4 text-on-surface min-h-[64px] px-4 rounded-lg font-label-lg text-label-lg border-2 border-transparent hover:border-outline hover:bg-surface-variant active:invert transition-colors w-full text-left">
+<span class="material-symbols-outlined text-[28px]">history</span>
+                History
+            </button>
+<button class="flex items-center gap-4 text-on-surface min-h-[64px] px-4 rounded-lg font-label-lg text-label-lg border-2 border-transparent hover:border-outline hover:bg-surface-variant active:invert transition-colors w-full text-left">
+<span class="material-symbols-outlined text-[28px]">help</span>
+                Help
+            </button>
+</div>
+</nav>
+<!-- Adjust main content margin for desktop sidenav -->
+<style>
+        @media (min-width: 768px) {
+            main {
+                margin-left: 240px;
+                max-width: calc(100% - 240px);
+                padding-left: max(24px, calc((100% - 240px - 700px) / 2));
+                padding-right: max(24px, calc((100% - 240px - 700px) / 2));
+                margin-right: 0;
+            }
+        }
+    </style>
+</body></html>

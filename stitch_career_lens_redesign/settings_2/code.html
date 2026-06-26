@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireScope - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ios-toggle:checked + .ios-toggle-dot {
+            transform: translateX(1.25rem);
+        }
+        .ios-toggle:checked {
+            background-color: #4d8eff; /* primary-container match */
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#00315d",
+                      "on-error": "#690005",
+                      "inverse-surface": "#d9e4f0",
+                      "tertiary-container": "#df7412",
+                      "on-surface": "#d9e4f0",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-bright": "#303a44",
+                      "error-container": "#93000a",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed": "#ffdcc6",
+                      "on-tertiary-fixed": "#311400",
+                      "error": "#ffb4ab",
+                      "primary-fixed-dim": "#adc6ff",
+                      "primary-container": "#4d8eff",
+                      "inverse-primary": "#005ac2",
+                      "on-secondary-container": "#d6e5ff",
+                      "secondary-container": "#0267b8",
+                      "on-tertiary-fixed-variant": "#723600",
+                      "on-tertiary-container": "#461f00",
+                      "tertiary-fixed-dim": "#ffb786",
+                      "secondary": "#a4c9ff",
+                      "on-primary-container": "#00285d",
+                      "surface-variant": "#2c363f",
+                      "on-secondary-fixed-variant": "#004883",
+                      "surface-container-highest": "#2c363f",
+                      "background": "#010810",
+                      "on-background": "#d9e4f0",
+                      "on-primary-fixed-variant": "#004395",
+                      "surface-tint": "#adc6ff",
+                      "primary": "#adc6ff",
+                      "on-tertiary": "#502400",
+                      "surface-container": "#162129",
+                      "surface-container-low": "#121d25",
+                      "surface-container-lowest": "#050f17",
+                      "tertiary": "#ffb786",
+                      "on-primary-fixed": "#001a42",
+                      "secondary-fixed-dim": "#a4c9ff",
+                      "outline": "#8c909f",
+                      "surface-dim": "#0a141d",
+                      "secondary-fixed": "#d4e3ff",
+                      "outline-variant": "#424754",
+                      "on-secondary-fixed": "#001c39",
+                      "inverse-on-surface": "#27323b",
+                      "surface-container-high": "#212b34",
+                      "surface": "#010810",
+                      "on-primary": "#002e6a",
+                      "on-surface-variant": "#c2c6d6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "xs": "8px",
+                      "xl": "32px",
+                      "gutter-mobile": "12px",
+                      "sm": "12px",
+                      "margin-mobile": "20px",
+                      "base": "4px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Outfit"],
+                      "body-md": ["Outfit"],
+                      "headline-lg": ["Outfit"],
+                      "body-sm": ["Outfit"],
+                      "headline-sm": ["Outfit"],
+                      "headline-lg-mobile": ["Outfit"],
+                      "headline-md": ["Outfit"],
+                      "label-md": ["Outfit"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-02em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-01em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/10 dark:bg-surface-container-lowest/10 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-margin-mobile h-12 w-full">
+<div class="flex items-center gap-base active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary cursor-pointer">arrow_back</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-background">HireScope</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20 active:scale-95 transition-transform">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional woman with a confident expression, soft studio lighting on a dark minimalist background, emphasizing a clean corporate tech aesthetic with high contrast and sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp2QeApC-vH8ezMDaZkH3bB5uc4brTIpn75-pLylTfyATQLMIfS_mrMh0cnl0LbKK-u5l1Fm5rjEsZUY0gqS0SbrnCvtaM_hBckcvr9MvtxmM-iW8fBj8oGgUkMLXwl-jyxQ12Opcj92b3BjOBA9YVuWSJfZITMB0lOZnzLNFgwW6iSfqdcuGTfwZrkNyZysfsN_uBD1uJJXkcErj6JKA6tP8MAtchEQMMldHgyVq-WP8uQ9FTES2oJgFK8zJKen9OWPhmfgbWQ3E"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-32 px-margin-mobile max-w-lg mx-auto space-y-xl">
+<!-- Header Section -->
+<section class="space-y-base">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Settings</h2>
+<p class="font-body-sm text-on-surface-variant">Manage your recruitment engine and preferences</p>
+</section>
+<!-- Personalization Group -->
+<section class="space-y-md">
+<div class="flex items-center gap-xs px-base">
+<span class="material-symbols-outlined text-primary text-body-lg">palette</span>
+<h3 class="font-label-md text-label-md uppercase tracking-widest text-primary">Personalization</h3>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden border border-white/5">
+<!-- Theme Selection -->
+<div class="flex items-center justify-between p-md hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg group-hover:text-primary transition-colors">Interface Theme</span>
+<span class="font-body-sm text-on-surface-variant">Deep Dark Mode</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<div class="h-px bg-white/5 mx-md"></div>
+<!-- Accent Color -->
+<div class="flex items-center justify-between p-md hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg group-hover:text-primary transition-colors">Brand Highlights</span>
+<span class="font-body-sm text-on-surface-variant">Electric Blue</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary border-2 border-white/20"></div>
+</div>
+</div>
+</section>
+<!-- Privacy Group -->
+<section class="space-y-md">
+<div class="flex items-center gap-xs px-base">
+<span class="material-symbols-outlined text-primary text-body-lg">shield</span>
+<h3 class="font-label-md text-label-md uppercase tracking-widest text-primary">Privacy</h3>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden border border-white/5">
+<!-- Profile Visibility -->
+<div class="flex items-center justify-between p-md">
+<div class="flex flex-col pr-md">
+<span class="font-headline-sm text-body-lg">Public Profile</span>
+<span class="font-body-sm text-on-surface-variant">Allow recruiters to discover you</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only ios-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full transition-colors duration-200"></div>
+<div class="ios-toggle-dot absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 shadow-sm"></div>
+</label>
+</div>
+<div class="h-px bg-white/5 mx-md"></div>
+<!-- Anonymous Browsing -->
+<div class="flex items-center justify-between p-md">
+<div class="flex flex-col pr-md">
+<span class="font-headline-sm text-body-lg">Stealth Mode</span>
+<span class="font-body-sm text-on-surface-variant">Hide your activity from connections</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only ios-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full transition-colors duration-200"></div>
+<div class="ios-toggle-dot absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 shadow-sm"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Native Tools Group -->
+<section class="space-y-md">
+<div class="flex items-center gap-xs px-base">
+<span class="material-symbols-outlined text-primary text-body-lg">terminal</span>
+<h3 class="font-label-md text-label-md uppercase tracking-widest text-primary">Native Tools</h3>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden border border-white/5">
+<!-- Battery Optimization -->
+<div class="flex items-center justify-between p-md">
+<div class="flex flex-col pr-md">
+<span class="font-headline-sm text-body-lg">Battery Saver</span>
+<span class="font-body-sm text-on-surface-variant">Reduce background polling frequency</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only ios-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full transition-colors duration-200"></div>
+<div class="ios-toggle-dot absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 shadow-sm"></div>
+</label>
+</div>
+<div class="h-px bg-white/5 mx-md"></div>
+<!-- Background Analytics -->
+<div class="flex items-center justify-between p-md">
+<div class="flex flex-col pr-md">
+<span class="font-headline-sm text-body-lg">Job Fetcher</span>
+<span class="font-body-sm text-on-surface-variant">Allow background job matching</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only ios-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full transition-colors duration-200"></div>
+<div class="ios-toggle-dot absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 shadow-sm"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Branding Footer -->
+<footer class="pt-xl pb-base flex flex-col items-center justify-center space-y-base opacity-40">
+<div class="flex items-center gap-xs">
+<span class="font-headline-sm text-label-md font-extrabold tracking-tighter uppercase text-on-background">HireScope</span>
+<div class="w-1 h-1 rounded-full bg-primary"></div>
+<span class="text-label-md font-body-sm">v2.4.0-stable</span>
+</div>
+<p class="text-label-md text-on-surface-variant">© 2024 HireScope Labs. All rights reserved.</p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-center items-center pb-lg px-margin-mobile">
+<div class="bg-surface-container/80 dark:bg-surface-container-low/80 backdrop-blur-2xl border border-white/10 shadow-xl rounded-full flex justify-around items-center w-full max-w-sm py-xs">
+<button class="text-on-surface-variant p-xs hover:bg-white/5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-on-surface-variant p-xs hover:bg-white/5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="bg-secondary-container text-on-secondary-container rounded-full p-xs active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Micro-interaction for toggles
+        document.querySelectorAll('.ios-toggle').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const parent = this.closest('.glass-panel');
+                // Subtle feedback animation could be added here
+            });
+        });
+    </script>
+</body></html>
